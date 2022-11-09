@@ -1,0 +1,15 @@
+    var html = " <div style='display:flex;'><div>{{data[i].seq}}</div><div>{{data[i].name}}<span>{{data[i].title}}</span></div></div>"
+    var data = [
+        {
+            name: 'kk',
+            seq: "1",
+            title: 'one'
+    
+        },
+        {
+            name: 'kz',
+            seq: "2",
+            title: "two"
+        }
+    ]
+    PC_ZYL_loop(html, data, 'Foritem')
