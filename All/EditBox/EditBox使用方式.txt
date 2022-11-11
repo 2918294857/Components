@@ -1,0 +1,15 @@
+///使用方式
+引入 Jquery
+引入 <script  src="Cp.js"></script> 
+引入 需要使用的css
+
+EditBox 使用方式
+数据：
+var data={
+    HtmlID:'EditBox',//添加位置
+    line_height:24  //行间距
+ }
+
+调用：
+Long.EditBox(data)
+HtmlID_content //是textarea 的id 可根据这个获取输入内容
