@@ -20,6 +20,6 @@ var data = {
 
 
 调用：
-Long.PC_ZYL_table(data)
+Long.Table(data)
 function newstable_table_BtnDel(data) { console.log(data)}//编辑按钮事件 名称由  HtmlID + _table_BtnDel 组成
 function newstable_table_BtnEdit(data) { console.log(data)} //删除按钮事件   名称由  HtmlID + _table_BtnEdit 组成

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./jquery-3.6.1.min.js"></script>
+
+<body>
+    <div id="EditBox" style="width: 500px;height:300px"></div>
+    <div id="newstable" style="width: 500px;height:300px"></div>
+</body>
+<script src="./CpScript.js"></script>
+<link rel="stylesheet" href="./EditBox/EditBox.css">
+<link rel="stylesheet" href="./Table/Table.css">
+<script>
+    //#region  EditBox
+    var data = {
+        HtmlID: 'EditBox',//添加位置
+        line_height: 24  //行间距
+    }
+    Long.EditBox(data)
+    //#endregion
+    //#region Table
+    var data = {
+        HtmlID: 'newstable',//添加位置
+        TheadData: ['最新技术', '计划学习'],//表头
+        IsDataSeq: 'Seq2',//排序 1.翻页重置 Seq2   2.不重置Seq1  3.其他值则不显示排序(默认 为不显示时可不写此属性)
+        TheadSeqName: '序号',//序号的表头名默认为空，若是不需要名称可不写此属性
+        TheadBtnName: '操作',//操作的表头名 默认为空，若是不需要名称可不写此属性
+        IsEditBtn: true,//是否有编辑按钮(默认为false 为false时可不写此属性) 当为true时 function `${HtmlID}`_table_BtnEdit(data)
+        IsDelBtn: true,//是否有删除按钮(默认为false 为false时可不写此属性) 当为true时 function `${HtmlID}`_table_BtnDel(data)
+        TbodyDataLength: 6,//一共多少条数据 当不填时默认为TbodyData.length
+        TbodyPageCount: '5',//每页有多少条 值为'All'(默认为All 为All时可不写此属性)时 不分页
+        TbodyData: [{
+            a: 1,
+            b: 2
+
+        },
+        {
+            a: 1,
+            b: 2
+
+        },
+        {
+            a: 1,
+            b: 2
+
+        },
+        {
+            a: 1,
+            b: 2
+        },
+        {
+            a: 1,
+            b: 2
+        },
+        {
+            a: 1,
+            b: 2
+        }] //数据
+    }
+    Long.Table(data)
+    function newstable_table_BtnDel(data) { console.log(data) }//编辑按钮事件 名称由  HtmlID + _table_BtnDel 组成
+    function newstable_table_BtnEdit(data) { console.log(data) } //删除按钮事件   名称由  HtmlID + _table_BtnEdit 组成
+    //#endregion
+</script>
+
+</html>
