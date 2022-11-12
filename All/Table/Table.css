@@ -1,40 +1,44 @@
 .Cp_table {
-  height: 100%;
+  height: calc(100% - 35px);
   width: 100%;
   font-size: 12px;
   display: flex;
   flex-direction: column;
-  border-collapse: collapse;
   background-color: aliceblue;
 }
 
 .Cp_table tbody {
-  display: block;
   flex: auto;
-  overflow-y: auto;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .Cp_table thead,
 .Cp_table tbody tr {
-  display: table;
+  display: flex;
   width: 100%;
-  table-layout: fixed;
+  height: 40px;
   text-align: center;
 }
 
 
-.Cp_table thead th{
-  width: 50px;
+.Cp_table thead th {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 40px;
 }
+
 .Cp_table tbody td {
-  width: 50px;
-  height: 30px;
+  height: 40px;
+  line-height: 40px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 1;
+  box-sizing: border-box;
 }
+
 
 .Cp_table thead {
   width: 100%;
@@ -46,6 +50,7 @@
 
 .Cp_paging {
   height: 35px;
+  min-height: 35px;
   background-color: aliceblue;
   color: black;
   display: flex;
@@ -57,29 +62,35 @@
   box-sizing: border-box;
   user-select: none;
 }
-.IsPaging{
-  color: rgb(153, 153, 153); cursor: pointer;
-}
-.SeparateColor{
-  background:white;
+
+.IsPaging {
+  color: rgb(153, 153, 153);
+  cursor: pointer;
 }
 
-.Cp_Btn{
+.SeparateColor {
+  background: white;
+}
+
+.Cp_Btn {
   color: white;
   border: none;
   height: 70%;
   width: 40px;
-  margin: 10px 2px;
+  margin: 0px 2px;
   font-size: 12px;
   border-radius: 5px;
   cursor: pointer;
 }
-.Cp_table_BtnEdit{
+
+.Cp_table_BtnEdit {
   background-color: rgb(224, 65, 65);
 }
-.Cp_table_BtnDel{
+
+.Cp_table_BtnDel {
   background-color: rgb(123, 179, 235);
 }
-.Cp_PagesCount{
-  margin:0 10px;
+
+.Cp_PagesCount {
+  margin: 0 10px;
 }

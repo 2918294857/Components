@@ -103,6 +103,10 @@
     Long.Table = function (TableData) {
         var HtmlID = TableData.HtmlID
         var TheadData = typeof (TableData.TheadData) == "undefined" ? [] : TableData.TheadData
+        var ThWidth = typeof (TableData.ThWidth) == "undefined" ? '' : TableData.ThWidth
+        var BoolEditTh = typeof (TableData.BoolEditTh) == "undefined" ? '' : TableData.BoolEditTh
+        var SeqThWidth = typeof (TableData.SeqThWidth) == "undefined" ? '10%' : TableData.SeqThWidth
+        var BtnThWidth = typeof (TableData.BtnThWidth) == "undefined" ? '10%' : TableData.BtnThWidth
         var TbodyData = TableData.TbodyData
         var TbodyDataKey = TbodyDataKey()
         var IsDataSeq = TableData.IsDataSeq
@@ -114,6 +118,8 @@
         var TbodyPageCount = !isNaN(TableData.TbodyPageCount) ? TableData.TbodyPageCount : "All"
         var PagesCount = 1  //当前页数
         var backups = ''//备份
+        var width = ''
+        GetWidth()
         TableHtml()
         Thead_Th()
         IsPaging()//判断是否分页
@@ -129,21 +135,27 @@
         }
 
         function TableHtml() {
-            $(`#${HtmlID}`).css({ "display": "flex", "flex-direction": "column", "justify-content": "space-between" })
             var tables = `<table class="Cp_table" border="0"><thead id="${HtmlID}_Thead"></thead><tbody id="${HtmlID}_Tbody"></tbody></table>`
             $(`#${HtmlID}`).html(tables)
+            $(`#${HtmlID}`).css({ "display": "flex", "flex-direction": "column", "justify-content": "space-between" })
         }
 
         function Thead_Th() {
             var TheadHtml = ''
             if ((IsDataSeq == 'Seq1' || IsDataSeq == 'Seq2') && TheadData.length != 0) {
-                TheadHtml += `<th>${TheadSeqName}</th>`
+                TheadHtml += `<th style="width:${SeqThWidth};">${TheadSeqName}</th>`
             }
             for (var i = 0; i < TheadData.length; i++) {
-                TheadHtml += `<th>${TheadData[i]}</th>`
+                if (ThWidth != '') {
+                    TheadHtml += `<th style="width:${ThWidth[i]};">${TheadData[i]}</th>`
+                }
+                else {
+                    TheadHtml += `<th style="width:${width}%;">${TheadData[i]}</th>`
+                }
+
             }
             if ((IsEditBtn || IsDelBtn) && TheadData.length != 0) {
-                TheadHtml += `<th>${TheadBtnName}</th>`
+                TheadHtml += `<th style="width:${BtnThWidth};">${TheadBtnName}</th>`
             }
             $(`#${HtmlID}_Thead`).html(TheadHtml)
         }
@@ -169,24 +181,31 @@
 
                     if (IsDataSeq == 'Seq1' || IsDataSeq == 'Seq2') {
                         if (IsDataSeq == 'Seq1') {
-                            TbodyHtml += '<td contenteditable="false">' + (i + 1) + '</td>'
+                            TbodyHtml += `<td contenteditable="false" style="width:${SeqThWidth};">` + (i + 1) + '</td>'
                         }
                         else {
                             if (TbodyPageCount != 'All') {
-                                TbodyHtml += '<td contenteditable="false">' + (i - TbodyPageCount * (PagesCount - 1) + 1) + '</td>'
+                                TbodyHtml += `<td style="width:${SeqThWidth};" contenteditable="false">` + (i - TbodyPageCount * (PagesCount - 1) + 1) + '</td>'
                             }
                             else {
-                                TbodyHtml += '<td contenteditable="false">' + (i + 1) + '</td>'
+                                TbodyHtml += `<td style="width:${SeqThWidth};" contenteditable="false">` + (i + 1) + '</td>'
                             }
                         }
+
                     }
 
                     for (var j = 0; j < TbodyDataKey.length; j++) {
-                        TbodyHtml += '<td>' + eval(`TbodyData[i].${TbodyDataKey[j]}`) + '</td>'
+                        if (ThWidth != '') {
+                            TbodyHtml += `<td contenteditable="${BoolEditTh == "" ? "none" : BoolEditTh[j] == 'true' ? 'none' : 'false'}" style="width:${ThWidth[j]};">` + eval(`TbodyData[i].${TbodyDataKey[j]}`) + '</td>'
+                        }
+                        else {
+                            TbodyHtml += `<td contenteditable="${BoolEditTh == "" ? "none" : BoolEditTh[j] == 'true' ? 'none' : 'false'}" style="width:${width}%;">` + eval(`TbodyData[i].${TbodyDataKey[j]}`) + '</td>'
+                        }
+
                     }
 
                     if (IsEditBtn || IsDelBtn) {
-                        TbodyHtml += '<td>'
+                        TbodyHtml += `<td style="width:${BtnThWidth};">`
                         if (IsEditBtn) {
                             TbodyHtml += `<button contenteditable="false" class="Cp_Btn Cp_table_BtnEdit ${HtmlID}_table_BtnEdit">编辑</button>`
                         }
@@ -211,6 +230,7 @@
                         $(this.nextSibling).html('取消')
                         IsEdit(this.parentNode.parentNode, 'true')
                         $(this.parentNode.parentNode).css('color', "red")
+                        $(`#${this.parentNode.parentNode.id} td`).css({ 'border-left': ' 1px solid rgb(188, 222, 232)' })
                     }
                 }
                 else {
@@ -318,6 +338,26 @@
                     }
                 }
             })
+        }
+
+        function GetWidth() {
+            if (IsDataSeq == 'Seq1' || IsDataSeq == 'Seq2') {
+
+                if (IsEditBtn || IsDelBtn) {
+                    width = (100 - SeqThWidth.replace("%", "") - BtnThWidth.replace("%", "")) / TbodyDataKey.length
+                }
+                else {
+                    width = (100 - SeqThWidth.replace("%", "")) / TbodyDataKey.length
+                }
+            }
+            else {
+                if (IsEditBtn || IsDelBtn) {
+                    width = (100 - BtnThWidth.replace("%", "")) / TbodyDataKey.length
+                }
+                else {
+                    width = 100 / TbodyDataKey.length
+                }
+            }
         }
     }
     window.Long = Long;
