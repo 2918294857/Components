@@ -1,20 +1,21 @@
-.PC_ZYL_table {
+.Cp_table {
   height: 100%;
   width: 100%;
+  font-size: 12px;
   display: flex;
   flex-direction: column;
   border-collapse: collapse;
   background-color: aliceblue;
 }
 
-.PC_ZYL_table tbody {
+.Cp_table tbody {
   display: block;
   flex: auto;
   overflow-y: auto;
 }
 
-.PC_ZYL_table thead,
-.PC_ZYL_table tbody tr {
+.Cp_table thead,
+.Cp_table tbody tr {
   display: table;
   width: 100%;
   table-layout: fixed;
@@ -22,11 +23,11 @@
 }
 
 
-.PC_ZYL_table thead th{
+.Cp_table thead th{
   width: 50px;
   height: 40px;
 }
-.PC_ZYL_table tbody td {
+.Cp_table tbody td {
   width: 50px;
   height: 30px;
   white-space: nowrap;
@@ -35,7 +36,7 @@
   -webkit-line-clamp: 1;
 }
 
-.PC_ZYL_table thead {
+.Cp_table thead {
   width: 100%;
   /* width: calc( 100% - 1em);表头与表格垂直对齐 */
   height: auto;
@@ -43,7 +44,7 @@
   color: white;
 }
 
-.PC_ZYL_paging {
+.Cp_paging {
   height: 35px;
   background-color: aliceblue;
   color: black;
@@ -63,21 +64,22 @@
   background:white;
 }
 
-.PC_ZYL_Btn{
+.Cp_Btn{
   color: white;
   border: none;
-  height: 25px;
-  margin: 0 2px;
+  height: 70%;
+  width: 40px;
+  margin: 10px 2px;
   font-size: 12px;
   border-radius: 5px;
   cursor: pointer;
 }
-.PC_ZYL_table_BtnEdit{
+.Cp_table_BtnEdit{
   background-color: rgb(224, 65, 65);
 }
-.PC_ZYL_table_BtnDel{
+.Cp_table_BtnDel{
   background-color: rgb(123, 179, 235);
 }
-.PC_ZYL_PagesCount{
+.Cp_PagesCount{
   margin:0 10px;
 }

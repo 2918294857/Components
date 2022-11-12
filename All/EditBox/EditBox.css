@@ -1,4 +1,4 @@
-.PC_ZYL_EditBox_seq {
+.Cp_EditBox_seq {
     overflow: auto;
     overflow-y: hidden;
     display: flex;
@@ -13,15 +13,15 @@
     background-color: rgb(124, 148, 211);
 }
 
-.PC_ZYL_EditBox_seq::-webkit-scrollbar {
+.Cp_EditBox_seq::-webkit-scrollbar {
     color: transparent;
 }
 
-.PC_ZYL_EditBox_seq li {
+.Cp_EditBox_seq li {
     list-style: none;
 }
 
-.PC_ZYL_EditBox_content {
+.Cp_EditBox_content {
     padding: 0;
     padding-left: 4px;
     width: 100%;

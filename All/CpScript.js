@@ -10,17 +10,17 @@
         Backspace()
         function Html() {
             var html = `
-                <div id="${id}_seq" class="PC_ZYL_EditBox_seq">
+                <div id="${id}_seq" class="Cp_EditBox_seq">
                 <li>1</li>
                 </div>
-                <textarea id="${id}_content" class="PC_ZYL_EditBox_content"></textarea>
+                <textarea id="${id}_content" class="Cp_EditBox_content"></textarea>
                  `
             $(`#${id}`).html(html)
             $(`#${id}`).css({
                 "display": "flex",
                 "border": "1px solid skyblue"
             })
-            $('.PC_ZYL_EditBox_content').css('line-height', line_height + 'px')
+            $('.Cp_EditBox_content').css('line-height', line_height + 'px')
             $(`#${id}_content`).css('width', $(`#${id}`).width() - 35 + 'px')
         }
 
@@ -34,10 +34,10 @@
             $(`#${id}_content`).on('propetychange input', function () {//监听 
 
                 if ($(`#${id}_content`).scrollLeft() == 0) {
-                    $('.PC_ZYL_EditBox_seq').css('overflow', 'auto')
-                    $('.PC_ZYL_EditBox_seq').css('overflow-y', 'hidden')
-                    $('.PC_ZYL_EditBox_content').css('overflow', 'auto')
-                    $('.PC_ZYL_EditBox_content').css('overflow-x', 'hidden')
+                    $('.Cp_EditBox_seq').css('overflow', 'auto')
+                    $('.Cp_EditBox_seq').css('overflow-y', 'hidden')
+                    $('.Cp_EditBox_content').css('overflow', 'auto')
+                    $('.Cp_EditBox_content').css('overflow-x', 'hidden')
                 }
             })
         }
@@ -80,11 +80,11 @@
         function Insert() {
             $(`#${id}_seq`).append(`<li>${seq + 1}</li>`)
             seq++;
-            $('.PC_ZYL_EditBox_seq li').css('line-height', line_height + 'px')
+            $('.Cp_EditBox_seq li').css('line-height', line_height + 'px')
             if ($(`#${id}_content`).scrollLeft() > 0) {
-                $('.PC_ZYL_EditBox_seq').css('overflow', 'scroll')
-                $('.PC_ZYL_EditBox_seq').css('overflow-y', 'hidden')
-                $('.PC_ZYL_EditBox_content').css('overflow', 'auto')
+                $('.Cp_EditBox_seq').css('overflow', 'scroll')
+                $('.Cp_EditBox_seq').css('overflow-y', 'hidden')
+                $('.Cp_EditBox_content').css('overflow', 'auto')
             }
 
         }
@@ -130,7 +130,7 @@
 
         function TableHtml() {
             $(`#${HtmlID}`).css({ "display": "flex", "flex-direction": "column", "justify-content": "space-between" })
-            var tables = `<table class="PC_ZYL_table" border="0"><thead id="${HtmlID}_Thead"></thead><tbody id="${HtmlID}_Tbody"></tbody></table>`
+            var tables = `<table class="Cp_table" border="0"><thead id="${HtmlID}_Thead"></thead><tbody id="${HtmlID}_Tbody"></tbody></table>`
             $(`#${HtmlID}`).html(tables)
         }
 
@@ -188,10 +188,10 @@
                     if (IsEditBtn || IsDelBtn) {
                         TbodyHtml += '<td>'
                         if (IsEditBtn) {
-                            TbodyHtml += `<button contenteditable="false" class="PC_ZYL_Btn PC_ZYL_table_BtnEdit ${HtmlID}_table_BtnEdit">编辑</button>`
+                            TbodyHtml += `<button contenteditable="false" class="Cp_Btn Cp_table_BtnEdit ${HtmlID}_table_BtnEdit">编辑</button>`
                         }
                         if (IsDelBtn) {
-                            TbodyHtml += `<button contenteditable="false" class="PC_ZYL_Btn PC_ZYL_table_BtnDel ${HtmlID}_table_BtnDel">删除</button>`
+                            TbodyHtml += `<button contenteditable="false" class="Cp_Btn Cp_table_BtnDel ${HtmlID}_table_BtnDel">删除</button>`
                         }
                         TbodyHtml += '</td>'
                     }
@@ -284,11 +284,11 @@
 
         function PageHtml() {
             var page = `
-        <div class="PC_ZYL_paging">
+        <div class="Cp_paging">
         <span>共${TbodyPageCount}条/页</span>
         <div>
           <strong class="IsPaging"  id="${HtmlID}_subtract"><<</strong>
-            <span id="${HtmlID}_pages" class="PC_ZYL_PagesCount">1</span>
+            <span id="${HtmlID}_pages" class="Cp_PagesCount">1</span>
           <strong class="IsPaging"  id="${HtmlID}_add">>></strong>
         </div>
         <span>共<span id="${HtmlID}_TbodyDataLength">${TbodyDataLength}</span>条记录</span>
