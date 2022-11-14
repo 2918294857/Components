@@ -360,5 +360,19 @@
             }
         }
     }
+    Long.ForLoop=function (str, data) {
+        var regex3 = /\{\{(.+?)\}\}/g;
+        var variable = str.match(regex3)
+        var str1 = str
+        var res = "";
+        for (var i = 0; i < data.length; i++) {
+            for (var j = 0; j < variable.length; j++) {
+                str1 = str1.replace(variable[j], eval(variable[j]).replace('{{', '').replace('}}', ""))
+            }
+            res += str1
+            str1 = str
+        }
+       return res
+    }
     window.Long = Long;
 })();

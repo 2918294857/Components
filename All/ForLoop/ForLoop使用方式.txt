@@ -1,0 +1,23 @@
+///使用方式
+引入 Jquery
+引入 <script  src="Cp.js"></script> 
+
+ForLoop 使用方式
+数据：
+    var html = " <div style='display:flex;'><div>{{data[i].seq}}</div><div>{{data[i].name}}<span>{{data[i].title}}</span></div></div>"
+    var data = [
+        {
+            name: 'kk',
+            seq: "1",
+            title: 'one'
+    
+        },
+        {
+            name: 'kz',
+            seq: "2",
+            title: "two"
+        }
+    ]
+
+调用：
+ var html = Long.ForLoop(html, data) =>返回值
