@@ -239,6 +239,7 @@
                     $(this.nextSibling).html('删除')
                     backups = ""
                     $(this.parentNode.parentNode).css('color', "black")
+                    $(`#${this.parentNode.parentNode.id} td`).css({ 'border-left': 'none' })
                     var count = this.parentNode.parentNode.id.replace(`${HtmlID}_Tbody_Tr`, '')
                     var array = [];//声明一个新的数组
                     $(`#${this.parentNode.parentNode.id}`).children().each(function (index, element) {//遍历每个对象
@@ -269,6 +270,7 @@
                     $(this.previousSibling).html('编辑')
                     $(this).html('删除')
                     $(this.parentNode.parentNode).css('color', "black")
+                    $(`#${this.parentNode.parentNode.id} td`).css({ 'border-left': 'none' })
                     $(this.parentNode.parentNode.parentNode).html(backups)
                     backups = ""
                     TableBtn()
