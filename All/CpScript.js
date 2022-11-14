@@ -105,8 +105,8 @@
         var TheadData = typeof (TableData.TheadData) == "undefined" ? [] : TableData.TheadData
         var ThWidth = typeof (TableData.ThWidth) == "undefined" ? '' : TableData.ThWidth
         var BoolEditTh = typeof (TableData.BoolEditTh) == "undefined" ? '' : TableData.BoolEditTh
-        var SeqThWidth = typeof (TableData.SeqThWidth) == "undefined" ? '10%' : TableData.SeqThWidth
-        var BtnThWidth = typeof (TableData.BtnThWidth) == "undefined" ? '10%' : TableData.BtnThWidth
+        var SeqThWidth = typeof (TableData.SeqThWidth) == "undefined" ? '15%' : TableData.SeqThWidth
+        var BtnThWidth = typeof (TableData.BtnThWidth) == "undefined" ? '20%' : TableData.BtnThWidth
         var TbodyData = TableData.TbodyData
         var TbodyDataKey = TbodyDataKey()
         var IsDataSeq = TableData.IsDataSeq

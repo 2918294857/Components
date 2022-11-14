@@ -13,8 +13,8 @@ var data = {
     TheadBtnName:'',//操作的表头名 默认为空，若是不需要名称可不写此属性
     ThWidth:['30%','50%'],//TbodyData 每列长度
     BoolEditTh:['false','true'],//每列在点击编辑后是否可以编辑，默认是可编辑
-    SeqThWidth:'15%',//默认10%  序号列长度
-    BtnThWidth:'15%',//默认10%  操作列长度
+    SeqThWidth:'15%',//默认15%  序号列长度
+    BtnThWidth:'15%',//默认20%  操作列长度
     IsEditBtn: true,//是否有编辑按钮(默认为false 为false时可不写此属性) 当为true时 function `${HtmlID}`_table_BtnEdit(data)
     IsDelBtn: true,//是否有删除按钮(默认为false 为false时可不写此属性) 当为true时 function `${HtmlID}`_table_BtnDel(data)
     TbodyDataLength: 7,//一共多少条数据 当不填时默认为TbodyData.length
