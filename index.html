@@ -6,18 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+    </style>
 </head>
 <script src="./jquery-3.6.1.min.js"></script>
 
 <body>
-    <div id="EditBox" style="width: 500px;height:300px"></div>
+    <!-- <div id="EditBox" style="width: 500px;height:300px"></div>
     <div id="newstable" style="width: 500px;height:300px"></div>
-    <div id="zk"></div>
+    <div id="zk"></div> -->
 </body>
 <script src="./CpScript.js"></script>
 <link rel="stylesheet" href="./EditBox/EditBox.css">
 <link rel="stylesheet" href="./Table/Table.css">
-<script>
+<!-- <script>
     //#region  EditBox
     var data = {
         HtmlID: 'EditBox',//添加位置
@@ -30,8 +32,8 @@
         HtmlID: 'newstable',//添加位置
         TheadData: ['最新技术', '计划学习'],//表头
         ThWidth:['30%','35%'],
-        SeqThWidth:'15%',
-        BtnThWidth:"20%",
+        // SeqThWidth:'15%',
+        // BtnThWidth:"20%",
         IsDataSeq: 'Seq2',//排序 1.翻页重置 Seq2   2.不重置Seq1  3.其他值则不显示排序(默认 为不显示时可不写此属性)
         TheadSeqName: '序号',//序号的表头名默认为空，若是不需要名称可不写此属性
         TheadBtnName: '操作',//操作的表头名 默认为空，若是不需要名称可不写此属性
@@ -71,6 +73,7 @@
     function newstable_table_BtnDel(data) { console.log(data) }//编辑按钮事件 名称由  HtmlID + _table_BtnDel 组成
     function newstable_table_BtnEdit(data) { console.log(data) } //删除按钮事件   名称由  HtmlID + _table_BtnEdit 组成
     //#endregion
+    //#region ForLoop
     var html = " <div style='display:flex;'><div>{{data[i].seq}}</div><div>{{data[i].name}}<span>{{data[i].title}}</span></div></div>"
     var data = [
         {
@@ -85,10 +88,9 @@
             title: "two"
         }
     ]
-  html=  Long.ForLoop(html, data)
-
-  $('#zk').html(html)
-
-</script>
+    html=  Long.ForLoop(html, data)
+    $('#zk').html(html)
+    //#endregion
+</script> -->
 
 </html>
