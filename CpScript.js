@@ -376,5 +376,21 @@
         }
        return res
     }
+    Long.DropDown=function (checkbox) {
+        var data = []
+        $(`input:checkbox[name="${checkbox.Checkbox_Name}"]`).on('click', function () {
+            if (this.checked) {
+                data.push($(this.parentNode).text().trim() + ",")
+            }
+            else {
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i] == $(this.parentNode).text().trim() + ",") {
+                        data.splice(i, 1);
+                    }
+                }
+            }
+            $(`#${checkbox.HtmlID}`).html(data)
+        })
+    }
     window.Long = Long;
 })();
