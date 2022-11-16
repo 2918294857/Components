@@ -4,42 +4,12 @@
 引入 <script  src="Cp.js"></script> 
 引入 需要使用的css
 dropdown 使用方式
-
-HTML:
-    <div id="DropDown" class="DropDown"></div>
-    <div class="DropDownItem">
-        <div> <input name="box" type="checkbox"> 学 </div>
-        <div> <input name="box" type="checkbox"> 习 </div>
-        <div> <input name="box" type="checkbox"> 中 </div>
-    </div>
-
-
-CSS:
- <style>
-        .DropDown {
-            width: 100px;
-            height: 30px;
-            border: 1px solid black;
-        }
-
-        .DropDownItem {
-            width: 100px;
-            height: auto;
-            border: 1px solid black;
-        }
-
-        .DropDownItem div {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-    </style>
-
 数据：
 var data={
-     HtmlID:'DropDown', //选择结果添加位置的id
-     Checkbox_Name:'box'//Checkbox 的name
+     HtmlID:'main', //选择结果添加位置的id
+     Checkbox_Name:'box',//Checkbox 的name
+     type:'Checkbox2',//Checkbox1、Checkbox2 点击选中效果
+     data:['足球','篮球','网球','羽毛球','乒乓球']//数据
  }
 
 调用：

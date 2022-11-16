@@ -362,7 +362,7 @@
             }
         }
     }
-    Long.ForLoop=function (str, data) {
+    Long.ForLoop = function (str, data) {
         var regex3 = /\{\{(.+?)\}\}/g;
         var variable = str.match(regex3)
         var str1 = str
@@ -374,59 +374,115 @@
             res += str1
             str1 = str
         }
-       return res
+        return res
     }
-    Long.DropDown=function (checkbox) {
+    Long.DropDown = function (Ddata) {
         var data = []
-        $(`input:checkbox[name="${checkbox.Checkbox_Name}"]`).on('click', function () {
-            if (this.checked) {
-                data.push($(this.parentNode).text().trim() + ",")
+        var HtmlID=Ddata.HtmlID
+        var Type=Ddata.type
+        var Checkbox_Name=Ddata.Checkbox_Name
+        var Select=Ddata.data
+        DHtml()
+        Dclick()
+        Iclick()
+        function DHtml()
+        {
+          var html=`<input id="Cp_DropDown_${HtmlID}" placeholder="请选择" readonly="true" class="Cp_DropDown" type="text">
+                     <div id="Cp_DropDownItem_${HtmlID}" class="Cp_DropDownItem">`
+                     for(var i=0;i<Select.length;i++)
+                     {
+                        html+=` <div> <input name="${Checkbox_Name}" type="checkbox"> ${Select[i]} </div>`
+                     }
+                    html+=`</div>`
+            $(`#${HtmlID}`).html(html)
+        }
+        function Iclick(){
+            $(`#Cp_DropDown_${HtmlID}`).on('click',function(){
+                if($(`#Cp_DropDownItem_${HtmlID}`).css('display')=='block')
+                {
+                    $(`#Cp_DropDownItem_${HtmlID}`).css('display','none')
+                }
+                else{
+                  $(`#Cp_DropDownItem_${HtmlID}`).css('display','block')
+                }
+             })
+        }
+        function Dclick() {
+            if (Type == 'Checkbox1') {
+                $(`#Cp_DropDownItem_${HtmlID} div input`).css('pointer-events', 'none')
+                $(`#Cp_DropDownItem_${HtmlID} div`).on('click', function () {
+                    if (!$(this).find('input').prop('checked')) {
+                        $(this).find('input').prop('checked', true)
+                        data.push($(this).text().trim())
+                    }
+                    else {
+                        $(this).find('input').prop('checked', false)
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i] == $(this).text().trim()) {
+                                data.splice(i, 1);
+                            }
+                        }
+                    }
+                    $(`#Cp_DropDown_${HtmlID}`).val(data)
+                })
             }
             else {
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i] == $(this.parentNode).text().trim() + ",") {
-                        data.splice(i, 1);
+                $(`#Cp_DropDownItem_${HtmlID} div input`).css(' pointer-events', 'all')
+                $(`input:checkbox[name="${Checkbox_Name}"]`).on('click', function () {
+                    if (this.checked) {
+                        data.push($(this.parentNode).text().trim())
                     }
-                }
+                    else {
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i] == $(this.parentNode).text().trim()) {
+                                data.splice(i, 1);
+                            }
+                        }
+                    }
+                    $(`#Cp_DropDown_${HtmlID}`).val(data)
+                })
             }
-            $(`#${checkbox.HtmlID}`).html(data)
-        })
-    }
-    Long.Message = function (Message) {
-        var MessageID='id'+getFormatDate()
-       $('body').prepend(` <div id='${MessageID}' class="Cp_Message"></div>`)
-       $(`#${MessageID}`).css({ 'color': Message.Color, 'background': Message.Background })
-       $(`#${MessageID}`).html(Message.text)
-       $(`#${MessageID}`).addClass(`Cp_Message_animation`)
-       setTimeout(() => {
-           $(`#${MessageID}`).removeClass(`Cp_Message_animation`);
-           $(`#${MessageID}`).remove()
-       }, 3500)
+        }
 
-       function getFormatDate() {
-           var date = new Date();
-           var month = date.getMonth() + 1;
-           var strDate = date.getDate();
-           var hours = date.getHours();
-           var minutes = date.getMinutes();
-           var seconds = date.getSeconds();
-           if (month >= 1 && month <= 9) {
-               month = "0" + month;
-           }
-           if (strDate >= 0 && strDate <= 9) {
-               strDate = "0" + strDate;
-           }
-           if (hours >= 0 && hours <= 9) {
-               hours = "0" + hours;
-           }
-           if (minutes >= 0 && minutes <= 9) {
-               minutes = "0" + minutes;
-           }
-           if (seconds >= 0 && seconds <= 9) {
-               seconds = "0" + seconds;
-           }
-           return date.getFullYear()  + month  + strDate + date.getHours()  + minutes  + seconds;
-       }
-   }
+    }
+    Long.Message = function (data) {
+        var MID = 'id' + getFormatDate()
+        var MData = data
+        Message()
+        function Message() {
+            $('body').prepend(` <div id='${MID}' class="Cp_Message"></div>`)
+            $(`#${MID}`).css({ 'color': MData.Color, 'background': MData.Background })
+            $(`#${MID}`).html(MData.text)
+            $(`#${MID}`).addClass(`Cp_Message_animation`)
+            setTimeout(() => {
+                $(`#${MID}`).removeClass(`Cp_Message_animation`);
+                $(`#${MID}`).remove()
+            }, 3500)
+        }
+        function getFormatDate() {
+            var date = new Date();
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            if (hours >= 0 && hours <= 9) {
+                hours = "0" + hours;
+            }
+            if (minutes >= 0 && minutes <= 9) {
+                minutes = "0" + minutes;
+            }
+            if (seconds >= 0 && seconds <= 9) {
+                seconds = "0" + seconds;
+            }
+            return date.getFullYear() + month + strDate + date.getHours() + minutes + seconds;
+        }
+    }
     window.Long = Long;
 })();
