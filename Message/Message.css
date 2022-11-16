@@ -1,0 +1,43 @@
+
+.Cp_Message {
+    position:absolute;
+    top: -5vh;
+    width: 25%;
+    color: rgb(248, 138, 138);
+    height: 40px;
+    display: flex;
+    padding: 20px;
+    margin: 0px 37.5% 20px 37.5%;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: left;
+    background-color: rgb(243, 202, 199);
+    box-sizing: border-box;
+}
+
+.Cp_Message_animation {
+    animation-name: Cp_Message_example;
+    animation-duration: 4s;
+}
+
+ @keyframes Cp_Message_example {
+    0% {
+        top: -3vh;
+    }
+
+    25% {
+        top: 3vh;
+    }
+
+    50% {
+        top: 3vh;
+    }
+
+    75% {
+        top: 3vh;
+    }
+
+    100% {
+        top: -5vh;
+    }
+} 

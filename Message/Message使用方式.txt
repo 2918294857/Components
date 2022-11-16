@@ -1,0 +1,15 @@
+///使用方式
+引入 Jquery
+引入 <script  src="Cp.js"></script> 
+引入 需要使用的css
+
+Message 使用方式
+数据：
+ var data = {
+            text: '警告哦，这是一条警告消息',//提示内容
+            Color: 'red',//字体颜色
+            Background: 'rgb(245, 207, 204)'//背景颜色
+        }
+        
+调用：
+Long.Message(data)
