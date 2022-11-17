@@ -362,7 +362,7 @@
             }
         }
     }
-    Long.ForLoop = function (str, data) {
+    Long.ForLoopOne = function (str, data) {
         var regex3 = /\{\{(.+?)\}\}/g;
         var variable = str.match(regex3)
         var str1 = str

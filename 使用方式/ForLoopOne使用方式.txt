@@ -20,4 +20,4 @@ ForLoop 使用方式 一级数组循环
     ]
 
 调用：
- var html = Long.ForLoop(html, data) =>返回值
+ var html = Long.ForLoopOne(html, data) =>返回值
