@@ -1,0 +1,20 @@
+.Cp_Switch {
+    border-radius: 30px;
+    border: 1px solid rgb(225, 219, 208);
+    width: 45px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.Cp_BtnSwitch {
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

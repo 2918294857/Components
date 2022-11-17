@@ -1,1 +1,12 @@
-引入js
+///使用方式
+引入 Jquery
+引入 <script  src="Cp.js"></script> 
+引入 需要使用的css
+数据：
+  var data={
+        HtmlID:"Main1",//添加位置
+        OnColor:"green",//关闭状态颜色
+        OffColor:"red"//打开状态的颜色
+    }
+调用：
+   Long.Switch(data)

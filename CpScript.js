@@ -484,5 +484,34 @@
             return date.getFullYear() + month + strDate + date.getHours() + minutes + seconds;
         }
     }
+    Long.Switch=function (data){
+        var HtmlID=data.HtmlID
+        var OnColor=data.OnColor
+        var OffColor=data.OffColor
+        SHtml()
+        SClick()
+        function SHtml(){
+            var html=`  <div id="Cp_Switch_${HtmlID}" class="Cp_Switch">
+                        <div id="Cp_BtnSwitch_${HtmlID}" class="Cp_BtnSwitch"></div>
+                        </div>`
+                        $(`#${HtmlID}`).html(html)
+                        $(`#Cp_Switch_${HtmlID}`).css('background',`${OffColor}`)
+        }
+        function SClick() {
+            var i = 0;
+            $(`#Cp_BtnSwitch_${HtmlID}`).on('click', function () {
+                if (i == 0) {
+                    $(`#Cp_Switch_${HtmlID}`).css('background', `${OnColor}`)
+                    $(`#Cp_Switch_${HtmlID}`).css('justify-content', 'right')
+                    i = 1
+                }
+                else {
+                    $(`#Cp_Switch_${HtmlID}`).css('background', `${OffColor}`)
+                    $(`#Cp_Switch_${HtmlID}`).css('justify-content', 'left')
+                    i = 0
+                }
+            })
+        }
+    }
     window.Long = Long;
 })();
