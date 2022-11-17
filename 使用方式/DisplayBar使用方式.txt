@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form oninput="x.value=parseInt(b.value)">
+        <input type="range" id="b" value="0">
+    <output name="x" for="b"></output>
+    </form>
+
+
+ 下载进度：<progress value="52" max="100"></progress>
+
+<p>展示给定的数据范围：</p>
+<meter value="5" min="0" max="10">2 out of 10</meter><br>
+<meter value="0.6">60%</meter>
+
+</body>
+</html>
