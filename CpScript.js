@@ -378,34 +378,31 @@
     }
     Long.DropDown = function (Ddata) {
         var data = []
-        var HtmlID=Ddata.HtmlID
-        var Type=Ddata.type
-        var Checkbox_Name=Ddata.Checkbox_Name
-        var Select=Ddata.data
+        var HtmlID = Ddata.HtmlID
+        var Type = Ddata.type
+        var Checkbox_Name = Ddata.Checkbox_Name
+        var Select = Ddata.data
         DHtml()
         Dclick()
         Iclick()
-        function DHtml()
-        {
-          var html=`<input id="Cp_DropDown_${HtmlID}" placeholder="请选择" readonly="true" class="Cp_DropDown" type="text">
+        function DHtml() {
+            var html = `<input id="Cp_DropDown_${HtmlID}" placeholder="请选择" readonly="true" class="Cp_DropDown" type="text">
                      <div id="Cp_DropDownItem_${HtmlID}" class="Cp_DropDownItem">`
-                     for(var i=0;i<Select.length;i++)
-                     {
-                        html+=` <div> <input name="${Checkbox_Name}" type="checkbox"> ${Select[i]} </div>`
-                     }
-                    html+=`</div>`
+            for (var i = 0; i < Select.length; i++) {
+                html += ` <div> <input name="${Checkbox_Name}" type="checkbox"> ${Select[i]} </div>`
+            }
+            html += `</div>`
             $(`#${HtmlID}`).html(html)
         }
-        function Iclick(){
-            $(`#Cp_DropDown_${HtmlID}`).on('click',function(){
-                if($(`#Cp_DropDownItem_${HtmlID}`).css('display')=='block')
-                {
-                    $(`#Cp_DropDownItem_${HtmlID}`).css('display','none')
+        function Iclick() {
+            $(`#Cp_DropDown_${HtmlID}`).on('click', function () {
+                if ($(`#Cp_DropDownItem_${HtmlID}`).css('display') == 'block') {
+                    $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'none')
                 }
-                else{
-                  $(`#Cp_DropDownItem_${HtmlID}`).css('display','block')
+                else {
+                    $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'block')
                 }
-             })
+            })
         }
         function Dclick() {
             if (Type == 'Checkbox1') {
@@ -484,18 +481,18 @@
             return date.getFullYear() + month + strDate + date.getHours() + minutes + seconds;
         }
     }
-    Long.Switch=function (data){
-        var HtmlID=data.HtmlID
-        var OnColor=data.OnColor
-        var OffColor=data.OffColor
+    Long.Switch = function (data) {
+        var HtmlID = data.HtmlID
+        var OnColor = data.OnColor
+        var OffColor = data.OffColor
         SHtml()
         SClick()
-        function SHtml(){
-            var html=`  <div id="Cp_Switch_${HtmlID}" class="Cp_Switch">
+        function SHtml() {
+            var html = `  <div id="Cp_Switch_${HtmlID}" class="Cp_Switch">
                         <div id="Cp_BtnSwitch_${HtmlID}" class="Cp_BtnSwitch"></div>
                         </div>`
-                        $(`#${HtmlID}`).html(html)
-                        $(`#Cp_Switch_${HtmlID}`).css('background',`${OffColor}`)
+            $(`#${HtmlID}`).html(html)
+            $(`#Cp_Switch_${HtmlID}`).css('background', `${OffColor}`)
         }
         function SClick() {
             var i = 0;
@@ -512,6 +509,45 @@
                 }
             })
         }
+    }
+    Long.DialogBox = function (data) {
+        var text = data.text
+        var HtmlID = data.HtmlID
+        var direction = data.direction
+        function DialogHtml() {
+            var html = `<div id="CP_Dialog_${HtmlID}" class="CP_Dialog">${text}</div>`
+            $('body').append(html)
+        }
+        $(`#${HtmlID}`).mouseover(function () {
+            DialogHtml()
+            var x = ''
+            var y = ''
+            if (direction == 'top') {
+                $(`#CP_Dialog_${HtmlID}`).addClass('CP_Dialog_top')
+                y = $(`#${HtmlID}`).offset().top - parseInt($(`#CP_Dialog_${HtmlID}`).height()) - 30
+                x = $(`#${HtmlID}`).offset().left + (parseInt($(`#${HtmlID}`).width()) / 2) - 35
+            }
+            if (direction == 'bottom') {
+                $(`#CP_Dialog_${HtmlID}`).addClass('CP_Dialog_bottom')
+                y = $(`#${HtmlID}`).offset().top + parseInt($(`#${HtmlID}`).height()) + 13
+                x = $(`#${HtmlID}`).offset().left + (parseInt($(`#${HtmlID}`).width()) / 2) - 35
+            }
+            if (direction == 'right') {
+                $(`#CP_Dialog_${HtmlID}`).addClass('CP_Dialog_right')
+                y = $(`#${HtmlID}`).offset().top + (parseInt($(`#${HtmlID}`).height()) / 2) - 35
+                x = $(`#${HtmlID}`).offset().left + parseInt($(`#${HtmlID}`).width()) + 13
+            }
+            if (direction == 'left') {
+                $(`#CP_Dialog_${HtmlID}`).addClass('CP_Dialog_left')
+                y = $(`#${HtmlID}`).offset().top + (parseInt($(`#${HtmlID}`).height()) / 2) - 35
+                x = $(`#${HtmlID}`).offset().left - parseInt($(`#CP_Dialog_${HtmlID}`).width()) - 30
+            }
+            $(`#CP_Dialog_${HtmlID}`).css('top', y)
+            $(`#CP_Dialog_${HtmlID}`).css('left', x)
+        })
+        $(`#${HtmlID}`).mouseout(function () {
+            $(`#CP_Dialog_${HtmlID}`).remove()
+        })
     }
     window.Long = Long;
 })();

@@ -1,0 +1,16 @@
+///使用方式
+引入 Jquery
+引入 <script  src="Cp.js"></script> 
+引入 需要使用的css
+
+DialogBox 使用方式
+数据：
+ var data = {
+            text: '',内容
+            HtmlID: '',//目标id
+            direction:'left'方向//left right top bottom
+        }
+       
+
+调用：
+Long.DialogBox(data)
