@@ -1,13 +1,10 @@
 
-.main{
-    width: 300px;
-}
-
 .Cp_DropDown {
     width: 200px;
     height: 30px;
     font-size: 12px;
     padding: 5px;
+    border: none;
     box-sizing: border-box;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -36,9 +33,7 @@
     text-align: center;
     box-sizing: border-box;
 }
-.Cp_DropDownItem div input{
-    z-index: 990;
-}
+
 
 .Cp_DropDownItem div:hover{
     cursor: pointer;
