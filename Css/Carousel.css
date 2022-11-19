@@ -1,0 +1,60 @@
+.Cp_Carousel_Img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 3px rgb(85, 84, 84);
+}
+
+.Cp_Carousel_Img p {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-width: 100% !important;
+    box-sizing: border-box;
+}
+
+.Cp_Carousel_Click {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.Cp_Carousel_Btn {
+    border: none;
+    height: 100%;
+    width: 10%;
+    color: white;
+    font-size: 40px;
+    background: transparent;
+}
+
+.Cp_Carousel_Btn:hover {
+    cursor: pointer;
+    background-color: rgb(213, 213, 213, 0.5);
+}
+
+.Cp_Carousel_BtnSpot {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+
+.Cp_Carousel_BtnSpot p {
+    border-radius: 20px;
+    width: 30px;
+    height: 4px;
+    margin: 10px;
+    background-color: white;
+}
+
+.Cp_Carousel_BtnSpot p:hover {
+    background-color: rgb(242, 134, 134);
+    cursor: pointer;
+}

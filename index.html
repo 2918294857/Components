@@ -6,9 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .Cp_Carousel {
+            width: 80%;
+            height: 80%;
+            border: 1px solid black;
+        }
+
+
+        
+    </style>
 </head>
 <script src="./jquery-3.6.1.min.js"></script>
 <script src="./CpScript.js"></script>
+<link rel="stylesheet" href="./Css/Carousel.css">
 <body>
+    <div id="Cp_Carousel" class="Cp_Carousel"></div>
+    <script>
+
+        var data = {
+            HtmlID: 'Cp_Carousel',
+            Image: [
+                'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F4k%2Fs%2F01%2F2109241634463042-0-lp.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671446733&t=d15364d6605a2701dcb0296e55604d7c',
+                'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F1113%2F0F220092919%2F200F2092919-10-1200.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671446733&t=89c79156bb39e5bfc49730d135c3b0f0',
+                'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffile.moyublog.com%2Fd%2Ffile%2F2020-11-28%2F11a56a31a189ea64a33b7da640a15efc.jpg&refer=http%3A%2F%2Ffile.moyublog.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671446733&t=1ae3812967195c78a24edfb51acd0103'
+            ]
+        }
+       Long.Carousel(data)
+       
+
+    </script>
 </body>
+
 </html>

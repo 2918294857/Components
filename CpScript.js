@@ -549,5 +549,125 @@
             $(`#CP_Dialog_${HtmlID}`).remove()
         })
     }
+    Long.Carousel = function (data) {
+        var height = parseInt($(`#${data.HtmlID}`).height())
+        var width  = parseInt($(`#${data.HtmlID}`).width())
+        var HtmlID = data.HtmlID
+        var Image = data.Image
+        var Count = 0
+        var Timer
+        var Indicator = 0
+        var Quantity=1
+        Calculation(width)
+        Carousel_Html()
+        Carousel_Automatic()
+        Carousel_Monitor()
+        function Calculation(data)
+        {
+               for(var i=20;i<data;i++)
+               {
+                if( data % i==0)
+                {
+                    Quantity=i;
+                    break
+                }
+               }
+        }
+        function Carousel_Html() {
+            var html = ` <div id="Cp_Carousel_Img_${HtmlID}" class="Cp_Carousel_Img">  <p style="background:url(${Image[Image.length - 1]});background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-size:cover;"></p>`
+            for (var i = 0; i < Image.length; i++) { html += `
+            <p  style="background:url(${Image[i]}); background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-size:cover;"></p>` }
+            html += `<p style="background:url(${Image[0]});background-repeat:no-repeat;
+            background-attachment:fixed;
+            background-size:cover;"></p></div><div id="Cp_Carousel_Click_${HtmlID}" class="Cp_Carousel_Click"> <button id="Cp_Carousel_Left_${HtmlID}" class="Cp_Carousel_Btn  Cp_Carousel_Left"> ＜</button>
+                     <div id="Cp_Carousel_BtnSpot_${HtmlID}" class="Cp_Carousel_BtnSpot">`
+            for (var i = 0; i < Image.length; i++) { html += `<p></p>` }
+            html += `</div> <button id="Cp_Carousel_Right_${HtmlID}" class="Cp_Carousel_Btn  Cp_Carousel_Right">＞</button></div>`
+            $(`#${HtmlID}`).html(html)
+            $(`#Cp_Carousel_Img_${HtmlID} p`).css('left', -width + 'px')
+            $(`#Cp_Carousel_Click_${HtmlID}`).css('top', -height)
+            $(`#Cp_Carousel_BtnSpot_${HtmlID} p`).eq(Indicator).css('background', 'rgb(242, 134, 134)')
+        }
+        function Carousel_direction(direction) {
+            if (Count == 0) {
+                var time = setInterval(() => {
+                    var img_left = parseInt($(`#Cp_Carousel_Img_${HtmlID} p`).css('left'))
+                    if (Count < width) {
+                        if (direction == 'Left') {
+                            img_left += width / Quantity
+                        }
+                        else {
+                            img_left -= width / Quantity
+                        }
+                        Count += width / Quantity
+                    }
+                    else {
+                        clearInterval(time)
+                        Count = 0;
+                        if (img_left == 0) {
+                            img_left = -(width * Image.length)
+                        }
+                        if (img_left == -(width * (Image.length + 1))) {
+                            img_left = -width
+                        }
+                    }
+                   
+                    $(`#Cp_Carousel_Img_${HtmlID} p`).css('left', img_left + 'px')
+                }, 30)
+            }
+        }
+        function Carousel_Monitor() {
+            $(`#${HtmlID}`).mouseover(function () {
+                clearInterval(Timer)
+            })
+            $(`#${HtmlID}`).mouseout(function () {
+                Carousel_Automatic()
+            })
+            $(`#Cp_Carousel_Right_${HtmlID}`).on('click', function () {
+                if (Count == 0) {
+                clearInterval(Timer)
+                var data
+                if (Indicator != Image.length - 1) { data = Indicator + 1 }
+                else { data = 0; }
+                IndicatorCss(data)
+                Carousel_direction('Right')
+                }
+            })
+            $(`#Cp_Carousel_Left_${HtmlID}`).on('click', function () {
+                if (Count == 0) {
+                clearInterval(Timer)
+                var data
+                if (Indicator != 0) { data = Indicator - 1 }
+                else { data = Image.length - 1; }
+                IndicatorCss(data)
+                Carousel_direction('Left')
+                }
+            })
+            $(`#Cp_Carousel_BtnSpot_${HtmlID} p`).on('click', function () {
+                $(`#Cp_Carousel_Img_${HtmlID} p`).css('left', -width * ($(this).index() + 1) + 'px')
+                IndicatorCss($(this).index())
+            })
+        }
+        function Carousel_Automatic() {
+            Timer = setInterval(() => {
+                if (Count == 0) {
+                    var data
+                    if (Indicator != Image.length - 1) { data = Indicator + 1 }
+                    else { data = 0; }
+                    IndicatorCss(data)
+                    Carousel_direction('Right')
+                }
+            }, 4000);
+        }
+        function IndicatorCss(data) {
+            $(`#Cp_Carousel_BtnSpot_${HtmlID} p`).eq(Indicator).css('background', 'white')
+            Indicator = data
+            $(`#Cp_Carousel_BtnSpot_${HtmlID} p`).eq(Indicator).css('background', 'rgb(242, 134, 134)')
+        }
+    }
     window.Long = Long;
 })();

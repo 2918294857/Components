@@ -1,0 +1,15 @@
+///使用方式
+引入 Jquery
+引入 <script  src="Cp.js"></script> 
+引入 需要使用的css
+
+Carousel 使用方式
+数据：
+    var data = {
+            HtmlID: 'Cp_Carousel',//容器ID
+            Image: []//图片url
+        }
+    
+
+调用：
+   Long.Carousel(data)
