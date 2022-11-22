@@ -1,48 +1,53 @@
 .CP_Dialog {
-    position: absolute;
+    margin: 0;
+    padding: 10px;
     width: 200px;
     height: auto;
-    min-height: 80px;
     font-size: 12px;
-    padding: 10px;
-    margin: 0;
-    border-radius: 10px;
-    box-shadow: 0 0 3px rgb(88, 87, 87);
+    text-indent: 1em;
+    line-height: 30px; 
+    position: absolute;
+    border-radius: 3px;
+    word-wrap:break-word; 
     box-sizing: border-box;
     background-color: white;
+    box-shadow: 0 0 3px rgb(88, 87, 87);
 }
 
 .CP_Dialog:after {
     content: '';
-    width: 10px;
-    height: 10px;
     border: none;
     position: absolute;
+    border: 5px solid white;
+    border-right-color: white;
+    border-bottom-color: white;
+    border-top-color: transparent;
+    border-left-color: transparent;
     box-sizing: border-box;
-    background-color: white;
+    background-color: transparent;
     box-shadow: 1px 1px 2px rgb(187, 184, 184);
 }
 
 .CP_Dialog_top:after {
-    left: 30px !important;
-    bottom: -5px !important;
+    left: 47% !important;
+    bottom: -6px !important;
     transform: rotate(45deg);
 }
 
 .CP_Dialog_bottom:after {
-    left: 30px !important;
+    left: 47%!important;
     top: -5px !important;
     transform: rotate(225deg);
 }
 
 .CP_Dialog_left:after {
-    right: -5px !important;
-    top: 35px !important;
+    right: -6px !important;
+    top: 43%;
     transform: rotate(-45deg);
 }
 
 .CP_Dialog_right:after {
     left: -5px !important;
-    top: 35px !important;
+    top: 43%;
     transform: rotate(-225deg);
 }

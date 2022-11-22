@@ -522,25 +522,31 @@
             DialogHtml()
             var x = ''
             var y = ''
+            OffTop = $(`#${HtmlID}`).offset().top
+            Offleft = $(`#${HtmlID}`).offset().left
+            Wtip = parseFloat($(`#CP_Dialog_${HtmlID}`).width())
+            Htip = parseFloat($(`#CP_Dialog_${HtmlID}`).height())
+            Wcontainer = parseFloat($(`#${HtmlID}`).width())
+            Hcontainer = parseFloat($(`#${HtmlID}`).height())
             if (direction == 'top') {
                 $(`#CP_Dialog_${HtmlID}`).addClass('CP_Dialog_top')
-                y = $(`#${HtmlID}`).offset().top - parseInt($(`#CP_Dialog_${HtmlID}`).height()) - 30
-                x = $(`#${HtmlID}`).offset().left + (parseInt($(`#${HtmlID}`).width()) / 2) - 35
+                y = OffTop - Htip - 20 - 10
+                x = Offleft + (Wcontainer + 2) / 2 - (Wtip + 20) / 2
             }
             if (direction == 'bottom') {
                 $(`#CP_Dialog_${HtmlID}`).addClass('CP_Dialog_bottom')
-                y = $(`#${HtmlID}`).offset().top + parseInt($(`#${HtmlID}`).height()) + 13
-                x = $(`#${HtmlID}`).offset().left + (parseInt($(`#${HtmlID}`).width()) / 2) - 35
+                y = OffTop + Hcontainer + 10
+                x = Offleft + (Wcontainer + 2) / 2 - (Wtip + 20) / 2
             }
             if (direction == 'right') {
                 $(`#CP_Dialog_${HtmlID}`).addClass('CP_Dialog_right')
-                y = $(`#${HtmlID}`).offset().top + (parseInt($(`#${HtmlID}`).height()) / 2) - 35
-                x = $(`#${HtmlID}`).offset().left + parseInt($(`#${HtmlID}`).width()) + 13
+                y = OffTop + (Hcontainer + 2) / 2 - (Htip + 20) / 2
+                x = Offleft + Wcontainer + 10
             }
             if (direction == 'left') {
                 $(`#CP_Dialog_${HtmlID}`).addClass('CP_Dialog_left')
-                y = $(`#${HtmlID}`).offset().top + (parseInt($(`#${HtmlID}`).height()) / 2) - 35
-                x = $(`#${HtmlID}`).offset().left - parseInt($(`#CP_Dialog_${HtmlID}`).width()) - 30
+                y = OffTop + (Hcontainer + 2) / 2 - (Htip + 20) / 2
+                x = Offleft - (Wtip + 20) - 10
             }
             $(`#CP_Dialog_${HtmlID}`).css('top', y)
             $(`#CP_Dialog_${HtmlID}`).css('left', x)
@@ -550,34 +556,23 @@
         })
     }
     Long.Carousel = function (data) {
-        var height = parseInt($(`#${data.HtmlID}`).height())
-        var width  = parseInt($(`#${data.HtmlID}`).width())
+        var height = parseFloat($(`#${data.HtmlID}`).height())
+        var width = parseFloat($(`#${data.HtmlID}`).width())
         var HtmlID = data.HtmlID
         var Image = data.Image
         var Count = 0
         var Timer
         var Indicator = 0
-        var Quantity=1
-        Calculation(width)
+        var Quantity = 20
         Carousel_Html()
         Carousel_Automatic()
         Carousel_Monitor()
-        function Calculation(data)
-        {
-               for(var i=20;i<data;i++)
-               {
-                if( data % i==0)
-                {
-                    Quantity=i;
-                    break
-                }
-               }
-        }
         function Carousel_Html() {
             var html = ` <div id="Cp_Carousel_Img_${HtmlID}" class="Cp_Carousel_Img">  <p style="background:url(${Image[Image.length - 1]});background-repeat:no-repeat;
             background-attachment:fixed;
             background-size:cover;"></p>`
-            for (var i = 0; i < Image.length; i++) { html += `
+            for (var i = 0; i < Image.length; i++) {
+                html += `
             <p  style="background:url(${Image[i]}); background-repeat:no-repeat;
             background-attachment:fixed;
             background-size:cover;"></p>` }
@@ -595,17 +590,24 @@
         function Carousel_direction(direction) {
             if (Count == 0) {
                 var time = setInterval(() => {
-                    var img_left = parseInt($(`#Cp_Carousel_Img_${HtmlID} p`).css('left'))
-                    if (Count < width) {
+
+                    var img_left = parseFloat($(`#Cp_Carousel_Img_${HtmlID} p`).css('left'))
+                    if (Count + Quantity <= width) {
                         if (direction == 'Left') {
-                            img_left += width / Quantity
+                            img_left += Quantity
                         }
                         else {
-                            img_left -= width / Quantity
+                            img_left -= Quantity
                         }
-                        Count += width / Quantity
+                        Count += Quantity
                     }
                     else {
+                        if (direction == 'Left') {
+                            img_left += width - Count
+                        }
+                        else {
+                            img_left -= width - Count
+                        }
                         clearInterval(time)
                         Count = 0;
                         if (img_left == 0) {
@@ -615,7 +617,7 @@
                             img_left = -width
                         }
                     }
-                   
+
                     $(`#Cp_Carousel_Img_${HtmlID} p`).css('left', img_left + 'px')
                 }, 30)
             }
@@ -629,22 +631,22 @@
             })
             $(`#Cp_Carousel_Right_${HtmlID}`).on('click', function () {
                 if (Count == 0) {
-                clearInterval(Timer)
-                var data
-                if (Indicator != Image.length - 1) { data = Indicator + 1 }
-                else { data = 0; }
-                IndicatorCss(data)
-                Carousel_direction('Right')
+                    clearInterval(Timer)
+                    var data
+                    if (Indicator != Image.length - 1) { data = Indicator + 1 }
+                    else { data = 0; }
+                    IndicatorCss(data)
+                    Carousel_direction('Right')
                 }
             })
             $(`#Cp_Carousel_Left_${HtmlID}`).on('click', function () {
                 if (Count == 0) {
-                clearInterval(Timer)
-                var data
-                if (Indicator != 0) { data = Indicator - 1 }
-                else { data = Image.length - 1; }
-                IndicatorCss(data)
-                Carousel_direction('Left')
+                    clearInterval(Timer)
+                    var data
+                    if (Indicator != 0) { data = Indicator - 1 }
+                    else { data = Image.length - 1; }
+                    IndicatorCss(data)
+                    Carousel_direction('Left')
                 }
             })
             $(`#Cp_Carousel_BtnSpot_${HtmlID} p`).on('click', function () {

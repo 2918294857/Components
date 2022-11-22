@@ -4,6 +4,7 @@
     height: 100%;
     overflow: hidden;
     box-shadow: 0 0 3px rgb(85, 84, 84);
+    box-sizing: border-box;
 }
 
 .Cp_Carousel_Img p {
