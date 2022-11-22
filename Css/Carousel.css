@@ -13,6 +13,7 @@
     padding: 0;
     min-width: 100% !important;
     box-sizing: border-box;
+
 }
 
 .Cp_Carousel_Click {
@@ -20,8 +21,8 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
-    box-sizing: border-box;
     position: relative;
+
 }
 
 .Cp_Carousel_Btn {
@@ -30,6 +31,9 @@
     width: 10%;
     color: white;
     font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
 }
 

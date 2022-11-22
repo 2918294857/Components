@@ -556,8 +556,8 @@
         })
     }
     Long.Carousel = function (data) {
-        var height = parseFloat($(`#${data.HtmlID}`).height())
-        var width = parseFloat($(`#${data.HtmlID}`).width())
+        var height = parseInt($(`#${data.HtmlID}`).height())
+        var width = parseInt($(`#${data.HtmlID}`).width())
         var HtmlID = data.HtmlID
         var Image = data.Image
         var Count = 0
@@ -570,15 +570,15 @@
         function Carousel_Html() {
             var html = ` <div id="Cp_Carousel_Img_${HtmlID}" class="Cp_Carousel_Img">  <p style="background:url(${Image[Image.length - 1]});background-repeat:no-repeat;
             background-attachment:fixed;
-            background-size:cover;"></p>`
+            background-size:cover;background-size:100% 100%;"></p>`
             for (var i = 0; i < Image.length; i++) {
                 html += `
             <p  style="background:url(${Image[i]}); background-repeat:no-repeat;
             background-attachment:fixed;
-            background-size:cover;"></p>` }
+            background-size:cover;background-size:100% 100%;"></p>` }
             html += `<p style="background:url(${Image[0]});background-repeat:no-repeat;
             background-attachment:fixed;
-            background-size:cover;"></p></div><div id="Cp_Carousel_Click_${HtmlID}" class="Cp_Carousel_Click"> <button id="Cp_Carousel_Left_${HtmlID}" class="Cp_Carousel_Btn  Cp_Carousel_Left"> ＜</button>
+            background-size:cover;background-size:100% 100%;"></p></div><div id="Cp_Carousel_Click_${HtmlID}" class="Cp_Carousel_Click"> <button id="Cp_Carousel_Left_${HtmlID}" class="Cp_Carousel_Btn  Cp_Carousel_Left"> ＜</button>
                      <div id="Cp_Carousel_BtnSpot_${HtmlID}" class="Cp_Carousel_BtnSpot">`
             for (var i = 0; i < Image.length; i++) { html += `<p></p>` }
             html += `</div> <button id="Cp_Carousel_Right_${HtmlID}" class="Cp_Carousel_Btn  Cp_Carousel_Right">＞</button></div>`
@@ -590,24 +590,27 @@
         function Carousel_direction(direction) {
             if (Count == 0) {
                 var time = setInterval(() => {
-
-                    var img_left = parseFloat($(`#Cp_Carousel_Img_${HtmlID} p`).css('left'))
-                    if (Count + Quantity <= width) {
-                        if (direction == 'Left') {
-                            img_left += Quantity
+                    var img_left = parseInt($(`#Cp_Carousel_Img_${HtmlID} p`).css('left'))
+                    if (Count < width) {
+                        if (Count + Quantity <= width) {
+                            if (direction == 'Left') {
+                                img_left += Quantity
+                            }
+                            else {
+                                img_left -= Quantity
+                            }
                         }
                         else {
-                            img_left -= Quantity
+                            if (direction == 'Left') {
+                                img_left += (width - Count)
+                            }
+                            else {
+                                img_left -= (width - Count)
+                            }
                         }
                         Count += Quantity
                     }
                     else {
-                        if (direction == 'Left') {
-                            img_left += width - Count
-                        }
-                        else {
-                            img_left -= width - Count
-                        }
                         clearInterval(time)
                         Count = 0;
                         if (img_left == 0) {
@@ -617,7 +620,6 @@
                             img_left = -width
                         }
                     }
-
                     $(`#Cp_Carousel_Img_${HtmlID} p`).css('left', img_left + 'px')
                 }, 30)
             }
