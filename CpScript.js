@@ -591,26 +591,22 @@
             if (Count == 0) {
                 var time = setInterval(() => {
                     var img_left = parseInt($(`#Cp_Carousel_Img_${HtmlID} p`).css('left'))
-                    if (Count < width) {
-                        if (Count + Quantity <= width) {
-                            if (direction == 'Left') {
-                                img_left += Quantity
-                            }
-                            else {
-                                img_left -= Quantity
-                            }
+                    if (Count + Quantity <= width) {
+                        if (direction == 'Left') {
+                            img_left += Quantity
                         }
                         else {
-                            if (direction == 'Left') {
-                                img_left += (width - Count)
-                            }
-                            else {
-                                img_left -= (width - Count)
-                            }
+                            img_left -= Quantity
                         }
                         Count += Quantity
                     }
                     else {
+                        if (direction == 'Left') {
+                            img_left += (width - Count)
+                        }
+                        else {
+                            img_left -= (width - Count)
+                        }
                         clearInterval(time)
                         Count = 0;
                         if (img_left == 0) {
