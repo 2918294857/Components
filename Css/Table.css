@@ -1,9 +1,9 @@
 .Cp_table {
-  height: calc(100% - 35px);
   width: 100%;
-  font-size: 12px;
   display: flex;
+  font-size: 12px;
   flex-direction: column;
+  height: calc(100% - 35px);
   background-color: aliceblue;
 }
 
@@ -15,57 +15,57 @@
 
 .Cp_table thead,
 .Cp_table tbody tr {
-  display: flex;
   width: 100%;
   height: 40px;
+  display: flex;
   text-align: center;
 }
 
 
 .Cp_table thead th {
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
 }
 
 .Cp_table tbody td {
   height: 40px;
+  overflow: hidden;
   line-height: 40px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   -webkit-line-clamp: 1;
   box-sizing: border-box;
+  text-overflow: ellipsis;
 }
 
 
 .Cp_table thead {
   width: 100%;
-  /* width: calc( 100% - 1em);表头与表格垂直对齐 */
   height: auto;
-  background-color: #373c4d;
   color: white;
+  background-color: #373c4d;
+  /* width: calc( 100% - 1em);表头与表格垂直对齐 */
 }
 
 .Cp_paging {
   height: 35px;
-  min-height: 35px;
-  background-color: aliceblue;
-  color: black;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  color: black;
   font-size: 12px;
   padding: 0 10px;
-  border-top: 1px solid rgb(24, 106, 239);
-  box-sizing: border-box;
+  min-height: 35px;
   user-select: none;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: aliceblue;
+  justify-content: space-between;
+  border-top: 1px solid rgb(24, 106, 239);
 }
 
 .IsPaging {
-  color: rgb(153, 153, 153);
   cursor: pointer;
+  color: rgb(153, 153, 153);
 }
 
 .SeparateColor {
@@ -73,14 +73,14 @@
 }
 
 .Cp_Btn {
-  color: white;
-  border: none;
-  height: 70%;
   width: 40px;
+  height: 70%;
+  border: none;
+  color: white;
+  cursor: pointer;
   margin: 0px 2px;
   font-size: 12px;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 .Cp_table_BtnEdit {

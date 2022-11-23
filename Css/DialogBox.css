@@ -1,14 +1,14 @@
 .CP_Dialog {
     margin: 0;
-    padding: 10px;
     width: 200px;
     height: auto;
+    padding: 10px;
     font-size: 12px;
     text-indent: 1em;
-    line-height: 30px; 
+    line-height: 30px;
     position: absolute;
     border-radius: 3px;
-    word-wrap:break-word; 
+    word-wrap: break-word;
     box-sizing: border-box;
     background-color: white;
     box-shadow: 0 0 3px rgb(88, 87, 87);
@@ -18,13 +18,13 @@
     content: '';
     border: none;
     position: absolute;
+    box-sizing: border-box;
     border: 5px solid white;
     border-right-color: white;
     border-bottom-color: white;
     border-top-color: transparent;
-    border-left-color: transparent;
-    box-sizing: border-box;
     background-color: transparent;
+    border-left-color: transparent;
     box-shadow: 1px 1px 2px rgb(187, 184, 184);
 }
 
@@ -35,19 +35,19 @@
 }
 
 .CP_Dialog_bottom:after {
-    left: 47%!important;
+    left: 47% !important;
     top: -5px !important;
     transform: rotate(225deg);
 }
 
 .CP_Dialog_left:after {
-    right: -6px !important;
     top: 43%;
+    right: -6px !important;
     transform: rotate(-45deg);
 }
 
 .CP_Dialog_right:after {
-    left: -5px !important;
     top: 43%;
+    left: -5px !important;
     transform: rotate(-225deg);
 }

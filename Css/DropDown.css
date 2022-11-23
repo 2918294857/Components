@@ -1,41 +1,40 @@
-
 .Cp_DropDown {
     width: 200px;
     height: 30px;
-    font-size: 12px;
     padding: 5px;
     border: none;
+    font-size: 12px;
     box-sizing: border-box;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 
 .Cp_DropDownItem {
-    position: absolute;
+    height: auto;
+    width: 200px;
     z-index: auto;
     display: none;
-    width: 200px;
     padding: 2.5vh 0;
-    height: auto;
+    user-select: none;
+    position: absolute;
     box-sizing: border-box;
+    background-color: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border: 1px solid rgb(170, 170, 170);
-    background-color: white;
-    user-select: none;
 }
 
 .Cp_DropDownItem div {
-    display: flex;
     padding: 5px;
-    justify-content: center;
-    align-items: center;
+    display: flex;
     text-align: center;
+    align-items: center;
     box-sizing: border-box;
+    justify-content: center;
 }
 
 
-.Cp_DropDownItem div:hover{
+.Cp_DropDownItem div:hover {
     cursor: pointer;
     color: rgb(71, 155, 239);
     background-color: rgb(208, 227, 242);
