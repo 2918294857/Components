@@ -444,12 +444,16 @@
     }
     Long.Message = function (data) {
         var MID = 'id' + getFormatDate()
-        var MData = data
+        var MColor = data.Color
+        var MText=data.text
+        var MBackground=data.Background
+        var MIcon=data.Icon
         Message()
         function Message() {
             $('body').prepend(` <div id='${MID}' class="Cp_Message"></div>`)
-            $(`#${MID}`).css({ 'color': MData.Color, 'background': MData.Background })
-            $(`#${MID}`).html(MData.text)
+            $(`#${MID}`).css({ 'color': MColor, 'background': MBackground })
+            var Tiptitle=`<img src="${MIcon}" class="Cp_Message_ICON"  alt="">${MText}`
+            $(`#${MID}`).html(Tiptitle)
             $(`#${MID}`).addClass(`Cp_Message_animation`)
             setTimeout(() => {
                 $(`#${MID}`).removeClass(`Cp_Message_animation`);
