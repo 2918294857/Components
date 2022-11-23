@@ -7,7 +7,7 @@ Carousel 使用方式
 数据：
     var data = {
             HtmlID: 'Cp_Carousel',//容器ID
-            MovingSpeed:30,//轮播移动速度
+            Quantity:1,//轮播移动速度 默认1 值越大速度越快
             Image: []//图片url
             ImageHref:[],//图片跳转地址
         }

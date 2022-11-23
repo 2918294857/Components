@@ -563,7 +563,7 @@
         })
     }
     Long.Carousel = function (data) {
-        var MovingSpeed = typeof (data.MovingSpeed) == 'undefined' ? 30 : data.MovingSpeed
+        var Quantity = typeof (data.Quantity) == 'undefined' ? 1 : data.Quantity
         var height = parseInt($(`#${data.HtmlID}`).height())
         var width = parseInt($(`#${data.HtmlID}`).width())
         var ImageHref = data.ImageHref
@@ -574,7 +574,7 @@
         var allimg = ''
         var allspot = ''
         var Indicator = 0
-        var Quantity = 20
+       
 
         Carousel_Html()
         Carousel_InitCss()
@@ -643,7 +643,7 @@
                         }
                     }
                     $(`#Cp_Carousel_Img_${HtmlID} p`).css('left', img_left + 'px')
-                }, MovingSpeed)
+                }, 0)
             }
         }
 
