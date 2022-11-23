@@ -5,17 +5,18 @@
         var line_height = typeof (data.line_height) == "undefined" ? 20.8 : data.line_height
         var seq = 1;
         Html()
+        Init_Css()
         scroll()
         Enter()
         Backspace()
         function Html() {
-            var html = `
-                <div id="${id}_seq" class="Cp_EditBox_seq">
-                <li>1</li>
-                </div>
-                <textarea id="${id}_content" class="Cp_EditBox_content"></textarea>
-                 `
+            var html = `<div id="${id}_seq" class="Cp_EditBox_seq">
+                           <li>1</li>
+                        </div>
+                        <textarea id="${id}_content" class="Cp_EditBox_content"></textarea>`
             $(`#${id}`).html(html)
+        }
+        function Init_Css() {
             $(`#${id}`).css({
                 "display": "flex",
                 "border": "1px solid skyblue"
@@ -72,7 +73,6 @@
                 var key = event.which || event.keyCode;
                 if (key == 8) {
                     Del()
-
                 }
             })
         }
@@ -382,17 +382,20 @@
         var Type = Ddata.type
         var Checkbox_Name = Ddata.Checkbox_Name
         var Select = Ddata.data
+        var allcheckbox = ''
+        DHtml_checkbox()
         DHtml()
         Dclick()
         Iclick()
         function DHtml() {
             var html = `<input id="Cp_DropDown_${HtmlID}" placeholder="请选择" readonly="true" class="Cp_DropDown" type="text">
-                     <div id="Cp_DropDownItem_${HtmlID}" class="Cp_DropDownItem">`
-            for (var i = 0; i < Select.length; i++) {
-                html += ` <div> <input name="${Checkbox_Name}" type="checkbox"> ${Select[i]} </div>`
-            }
-            html += `</div>`
+                        <div id="Cp_DropDownItem_${HtmlID}" class="Cp_DropDownItem">${allcheckbox}</div>`
             $(`#${HtmlID}`).html(html)
+        }
+        function DHtml_checkbox() {
+            for (var i = 0; i < Select.length; i++) {
+                allcheckbox += ` <div> <input name="${Checkbox_Name}" type="checkbox"> ${Select[i]} </div>`
+            }
         }
         function Iclick() {
             $(`#Cp_DropDown_${HtmlID}`).on('click', function () {
@@ -445,14 +448,14 @@
     Long.Message = function (data) {
         var MID = 'id' + getFormatDate()
         var MColor = data.Color
-        var MText=data.text
-        var MBackground=data.Background
-        var MIcon=data.Icon
+        var MText = data.text
+        var MBackground = data.Background
+        var MIcon = data.Icon
         Message()
         function Message() {
             $('body').prepend(` <div id='${MID}' class="Cp_Message"></div>`)
             $(`#${MID}`).css({ 'color': MColor, 'background': MBackground })
-            var Tiptitle=`<img src="${MIcon}" class="Cp_Message_ICON"  alt="">${MText}`
+            var Tiptitle = `<img src="${MIcon}" class="Cp_Message_ICON"  alt="">${MText}`
             $(`#${MID}`).html(Tiptitle)
             $(`#${MID}`).addClass(`Cp_Message_animation`)
             setTimeout(() => {
@@ -492,8 +495,8 @@
         SHtml()
         SClick()
         function SHtml() {
-            var html = `  <div id="Cp_Switch_${HtmlID}" class="Cp_Switch">
-                        <div id="Cp_BtnSwitch_${HtmlID}" class="Cp_BtnSwitch"></div>
+            var html = `<div id="Cp_Switch_${HtmlID}" class="Cp_Switch">
+                          <div id="Cp_BtnSwitch_${HtmlID}" class="Cp_BtnSwitch"></div>
                         </div>`
             $(`#${HtmlID}`).html(html)
             $(`#Cp_Switch_${HtmlID}`).css('background', `${OffColor}`)
@@ -560,37 +563,56 @@
         })
     }
     Long.Carousel = function (data) {
+        var MovingSpeed = typeof (data.MovingSpeed) == 'undefined' ? 30 : data.MovingSpeed
         var height = parseInt($(`#${data.HtmlID}`).height())
         var width = parseInt($(`#${data.HtmlID}`).width())
+        var ImageHref = data.ImageHref
         var HtmlID = data.HtmlID
         var Image = data.Image
-        var Count = 0
         var Timer
+        var Count = 0
+        var allimg = ''
+        var allspot = ''
         var Indicator = 0
         var Quantity = 20
+
         Carousel_Html()
+        Carousel_InitCss()
         Carousel_Automatic()
         Carousel_Monitor()
         function Carousel_Html() {
-            var html = ` <div id="Cp_Carousel_Img_${HtmlID}" class="Cp_Carousel_Img">  <p style="background:url(${Image[Image.length - 1]});background-repeat:no-repeat;
-            background-attachment:fixed;
-            background-size:cover;background-size:100% 100%;"></p>`
-            for (var i = 0; i < Image.length; i++) {
-                html += `
-            <p  style="background:url(${Image[i]}); background-repeat:no-repeat;
-            background-attachment:fixed;
-            background-size:cover;background-size:100% 100%;"></p>` }
-            html += `<p style="background:url(${Image[0]});background-repeat:no-repeat;
-            background-attachment:fixed;
-            background-size:cover;background-size:100% 100%;"></p></div><div id="Cp_Carousel_Click_${HtmlID}" class="Cp_Carousel_Click"> <button id="Cp_Carousel_Left_${HtmlID}" class="Cp_Carousel_Btn  Cp_Carousel_Left"> ＜</button>
-                     <div id="Cp_Carousel_BtnSpot_${HtmlID}" class="Cp_Carousel_BtnSpot">`
-            for (var i = 0; i < Image.length; i++) { html += `<p></p>` }
-            html += `</div> <button id="Cp_Carousel_Right_${HtmlID}" class="Cp_Carousel_Btn  Cp_Carousel_Right">＞</button></div>`
+            Carousel_ForHtml()
+            var html = `<div id="Cp_Carousel_Img_${HtmlID}" class="Cp_Carousel_Img">  
+                           <p style="background:url(${Image[Image.length - 1]});"></p>${allimg}
+                           <p style="background:url(${Image[0]});"></p>
+                        </div>
+                        <div id="Cp_Carousel_Click_${HtmlID}" class="Cp_Carousel_Click"> 
+                          <button id="Cp_Carousel_Left_${HtmlID}" class="Cp_Carousel_Btn  Cp_Carousel_Left"> ＜</button>
+                          <div id="Cp_Carousel_BtnSpot_${HtmlID}" class="Cp_Carousel_BtnSpot"><p id="Cp_Carousel_BtnSpot_${HtmlID}_Href"></p><div>${allspot}</div></div>
+                          <button id="Cp_Carousel_Right_${HtmlID}" class="Cp_Carousel_Btn  Cp_Carousel_Right">＞</button>
+                        </div>`
             $(`#${HtmlID}`).html(html)
+
+        }
+
+        function Carousel_ForHtml() {
+            for (var i = 0; i < Image.length; i++) {
+                allimg += `<p style="background:url(${Image[i]});"></p>`
+                allspot += '<p></p>'
+            }
+        }
+
+        function Carousel_InitCss() {
+            $(`#Cp_Carousel_Img_${HtmlID} p`).css({
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover',
+                'background-size': '100% 100%'
+            })
             $(`#Cp_Carousel_Img_${HtmlID} p`).css('left', -width + 'px')
             $(`#Cp_Carousel_Click_${HtmlID}`).css('top', -height)
-            $(`#Cp_Carousel_BtnSpot_${HtmlID} p`).eq(Indicator).css('background', 'rgb(242, 134, 134)')
+            $(`#Cp_Carousel_BtnSpot_${HtmlID} div p`).eq(Indicator).css('background', 'rgb(242, 134, 134)')
         }
+
         function Carousel_direction(direction) {
             if (Count == 0) {
                 var time = setInterval(() => {
@@ -621,15 +643,20 @@
                         }
                     }
                     $(`#Cp_Carousel_Img_${HtmlID} p`).css('left', img_left + 'px')
-                }, 30)
+                }, MovingSpeed)
             }
         }
+
         function Carousel_Monitor() {
             $(`#${HtmlID}`).mouseover(function () {
                 clearInterval(Timer)
+                $(`#Cp_Carousel_Right_${HtmlID}`).css('visibility', 'visible')
+                $(`#Cp_Carousel_Left_${HtmlID}`).css('visibility', 'visible')
             })
             $(`#${HtmlID}`).mouseout(function () {
                 Carousel_Automatic()
+                $(`#Cp_Carousel_Right_${HtmlID}`).css('visibility', 'hidden')
+                $(`#Cp_Carousel_Left_${HtmlID}`).css('visibility', 'hidden')
             })
             $(`#Cp_Carousel_Right_${HtmlID}`).on('click', function () {
                 if (Count == 0) {
@@ -651,11 +678,19 @@
                     Carousel_direction('Left')
                 }
             })
-            $(`#Cp_Carousel_BtnSpot_${HtmlID} p`).on('click', function () {
+
+            $(`#Cp_Carousel_BtnSpot_${HtmlID}_Href`).on('click', function () {
+                if (ImageHref[Indicator]) {
+                    window.location.href = ImageHref[Indicator]
+                }
+            })
+
+            $(`#Cp_Carousel_BtnSpot_${HtmlID} div p`).on('click', function () {
                 $(`#Cp_Carousel_Img_${HtmlID} p`).css('left', -width * ($(this).index() + 1) + 'px')
                 IndicatorCss($(this).index())
             })
         }
+
         function Carousel_Automatic() {
             Timer = setInterval(() => {
                 if (Count == 0) {
@@ -667,10 +702,11 @@
                 }
             }, 4000);
         }
+
         function IndicatorCss(data) {
-            $(`#Cp_Carousel_BtnSpot_${HtmlID} p`).eq(Indicator).css('background', 'white')
+            $(`#Cp_Carousel_BtnSpot_${HtmlID} div p`).eq(Indicator).css('background', 'white')
             Indicator = data
-            $(`#Cp_Carousel_BtnSpot_${HtmlID} p`).eq(Indicator).css('background', 'rgb(242, 134, 134)')
+            $(`#Cp_Carousel_BtnSpot_${HtmlID} div p`).eq(Indicator).css('background', 'rgb(242, 134, 134)')
         }
     }
     window.Long = Long;

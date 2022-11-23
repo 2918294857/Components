@@ -7,9 +7,10 @@ Carousel 使用方式
 数据：
     var data = {
             HtmlID: 'Cp_Carousel',//容器ID
+            MovingSpeed:30,//轮播移动速度
             Image: []//图片url
+            ImageHref:[],//图片跳转地址
         }
-    
 
 调用：
    Long.Carousel(data)

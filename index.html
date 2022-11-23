@@ -18,9 +18,10 @@
             padding: 0;
         }
 
-        .Cp_Carousel {
+        .Carousel {
             width: 80%;
-            height: 80%;
+            height:80%;
+            background-color: rebeccapurple;
         }
 
 
@@ -32,8 +33,20 @@
 <link rel="stylesheet" href="./Css/Carousel.css">
 <link rel="stylesheet" href="./Css/DropDown.css">
 <body>
-    <div id="Cp_Carousel" class="Cp_Carousel"></div>
-    </script>
+    <div id="Cp_Carousel" class="Carousel"></div>
+    <a href="http://www.baidu.com" style="background-color: red;">
+        <p style="background:black;height: 300px; width:300px"></p>
+    </a>
+   <script>
+     var data = {
+            HtmlID: 'Cp_Carousel',//容器ID
+            MovingSpeed:30,
+            ImageHref:['http://www.baidu.com','http://www.baidu.com'],
+            Image: ['https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Ff%2F57a42b9002e19.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671774592&t=d626515ca78297d9e25ec4e6db739a90']//图片url
+        }
+    
+   Long.Carousel(data)
+   </script>
 </body>
-<link rel="stylesheet" href="./Css/Message.css">
+<link rel="stylesheet" href="./Css/Carousel.css">
 </html>

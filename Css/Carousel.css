@@ -30,6 +30,7 @@
     display: flex;
     color: white;
     font-size: 40px;
+    visibility: hidden;
     align-items: center;
     justify-content: center;
     background: transparent;
@@ -44,11 +45,22 @@
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    flex-direction: column;
 }
 
 .Cp_Carousel_BtnSpot p {
+    height: 100%;
+}
+
+.Cp_Carousel_BtnSpot div {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Cp_Carousel_BtnSpot div p {
     width: 30px;
     height: 4px;
     margin: 10px;
@@ -56,7 +68,7 @@
     background-color: white;
 }
 
-.Cp_Carousel_BtnSpot p:hover {
+.Cp_Carousel_BtnSpot div p:hover {
     cursor: pointer;
     background-color: rgb(242, 134, 134);
 }
