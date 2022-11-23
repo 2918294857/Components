@@ -1,4 +1,4 @@
-///使用方式  信息提示
+///使用方式  信息弹窗
 引入 Jquery
 引入 <script  src="Cp.js"></script> 
 引入 需要使用的css

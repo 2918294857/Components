@@ -21,7 +21,7 @@
         .Carousel {
             width: 80%;
             height:80%;
-            background-color: rebeccapurple;
+            padding-left: 30px;
         }
 
 
@@ -34,19 +34,28 @@
 <link rel="stylesheet" href="./Css/DropDown.css">
 <body>
     <div id="Cp_Carousel" class="Carousel"></div>
-    <a href="http://www.baidu.com" style="background-color: red;">
-        <p style="background:black;height: 300px; width:300px"></p>
-    </a>
    <script>
      var data = {
-            HtmlID: 'Cp_Carousel',//容器ID
-            Quantity:3,
-            ImageHref:['http://www.baidu.com','http://www.baidu.com'],
-            Image: ['https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Ff%2F57a42b9002e19.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671774592&t=d626515ca78297d9e25ec4e6db739a90']//图片url
+            text: '恭喜你，这是一条成功的消息',//提示内容
+            Color: '#67A32c',//字体颜色
+            Background: '#f0f9EB',//背景颜色
+            Icon:'./Icon/success.png'
         }
-    
-   Long.Carousel(data)
+        Long.Message(data)
+
+         var data1 = {
+            text: '警告，这是一条警告消息',//提示内容
+            Color: '#E6A23c',//字体颜色
+            Background: '#FDF6EC',//背景颜色
+            Icon:'./Icon/warning.png'
+        } 
+        Long.Message(data1)
+Long.DropDown(data)
    </script>
 </body>
-<link rel="stylesheet" href="./Css/Carousel.css">
+
 </html>
+<link rel="stylesheet" href="./Css/Carousel.css">
+<link rel="stylesheet" href="./Css/DialogBox.css">
+<link rel="stylesheet" href="./Css/DropDown.css">
+<link rel="stylesheet" href="./Css/Message.css">

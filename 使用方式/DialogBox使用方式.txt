@@ -1,4 +1,4 @@
-///使用方式
+///使用方式 内容提示
 引入 Jquery
 引入 <script  src="Cp.js"></script> 
 引入 需要使用的css

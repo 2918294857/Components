@@ -7,6 +7,7 @@
     box-sizing: border-box;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    border: 1px solid rgb(198, 198, 198);
 }
 
 .Cp_DropDownItem {
