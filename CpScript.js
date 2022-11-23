@@ -574,7 +574,7 @@
         var allimg = ''
         var allspot = ''
         var Indicator = 0
-       
+
 
         Carousel_Html()
         Carousel_InitCss()
@@ -680,7 +680,7 @@
             })
 
             $(`#Cp_Carousel_BtnSpot_${HtmlID}_Href`).on('click', function () {
-                if (ImageHref[Indicator]) {
+                if (typeof (ImageHref[Indicator]) != 'undefined' || ImageHref[Indicator]) {
                     window.location.href = ImageHref[Indicator]
                 }
             })
