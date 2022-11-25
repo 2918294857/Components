@@ -446,47 +446,114 @@
 
     }
     Long.Message = function (data) {
-        var MID = 'id' + getFormatDate()
-        var MColor = data.Color
-        var MText = data.text
-        var MBackground = data.Background
-        var MIcon = data.Icon
-        Message()
-        function Message() {
-            $('body').prepend(` <div id='${MID}' class="Cp_Message"></div>`)
+        var Tiptitle, DKey, MKey, MID, Distance, MColor, MText, MBackground, MIcon, Tforward
+        MessageKey()
+        MText = data.text
+        MIcon = data.Icon
+        MColor = data.Color
+        MID = 'Cp_Mkey' + MKey
+        MBackground = data.Background
+        Mhtml()
+        Mgo()
+        Mreturn()
+        ClearHtml()
+
+        function MessageKey() {
+            MKey = parseInt(sessionStorage.getItem('Cp_MessageKey'))
+            if (isNaN(MKey)) {
+                MKey = 0
+                DKey = 0
+                sessionStorage.setItem('Cp_MessageKey', MKey)
+                sessionStorage.setItem('Cp_MessageDelKey', DKey)
+            }
+            MKey += 1
+            sessionStorage.setItem('Cp_MessageKey', MKey)
+        }
+
+        function Mhtml() {
+            $('body').append(` <div id='${MID}' class="Cp_Message"></div>`)
             $(`#${MID}`).css({ 'color': MColor, 'background': MBackground })
-            var Tiptitle = `<img src="${MIcon}" class="Cp_Message_ICON"  alt="">${MText}`
+            Tiptitle = `<img src="${MIcon}" class="Cp_Message_ICON"  alt="">${MText}`
             $(`#${MID}`).html(Tiptitle)
-            $(`#${MID}`).addClass(`Cp_Message_animation`)
+        }
+
+        function Mgo() {
+            var Tgo = setInterval(function () {
+                 Distance = MKey == 1 ? (MKey * 20) : parseInt($(`#Cp_Mkey${MKey - 1}`).css('top')) + 50
+                var Htop = $(`#${MID}`).css('top') == 'auto' ? -40 : parseInt($(`#${MID}`).css('top'))
+                if (Htop < Distance) {
+                    $(`#${MID}`).css('top', Htop + 1 + 'px')
+                }
+                else {
+                    clearInterval(Tgo)
+                    Mforward()
+                }
+            }, 0)
+        }
+
+        function Mforward() {
+                Tforward = setInterval(function () {
+                    if (MKey != 1 && parseInt($(`#Cp_Mkey${MKey - 1}`).css('top')) + 50 == parseInt($(`#${MID}`).css('top')) - 50) {
+                        var top = parseInt($(`#${MID}`).css('top')) - 45
+                        var Titem = setInterval(() => {
+                            var Htop = parseInt($(`#${MID}`).css('top'))
+                            if (Htop > top) {
+                                $(`#${MID}`).css('top', Htop - 1 + 'px')
+                            }
+                            else {
+                                clearInterval(Titem)
+                            }
+                        })
+                    }
+                }, 0)
+        }
+
+
+        function Mreturn() {
+            setTimeout(() => {
+                clearInterval(Tforward)
+                var Treture = setInterval(function () {
+                    var Htop = parseInt($(`#${MID}`).css('top'))
+                    if (Htop > -40) {
+                        $(`#${MID}`).css('top', Htop - 1 + 'px')
+                    }
+                    else {
+                        clearInterval(Treture)
+                    }
+                }, 0)
+            }, 3000)
+        }
+
+        function ClearHtml() {
             setTimeout(() => {
                 $(`#${MID}`).removeClass(`Cp_Message_animation`);
                 $(`#${MID}`).remove()
+                ClearItem()
             }, 3500)
         }
-        function getFormatDate() {
-            var date = new Date();
-            var month = date.getMonth() + 1;
-            var strDate = date.getDate();
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            var seconds = date.getSeconds();
-            if (month >= 1 && month <= 9) {
-                month = "0" + month;
-            }
-            if (strDate >= 0 && strDate <= 9) {
-                strDate = "0" + strDate;
-            }
-            if (hours >= 0 && hours <= 9) {
-                hours = "0" + hours;
-            }
-            if (minutes >= 0 && minutes <= 9) {
-                minutes = "0" + minutes;
-            }
-            if (seconds >= 0 && seconds <= 9) {
-                seconds = "0" + seconds;
-            }
-            return date.getFullYear() + month + strDate + date.getHours() + minutes + seconds;
+
+        function ClearItem() {
+            DKey = parseInt(sessionStorage.getItem('Cp_MessageDelKey')) + 1
+            sessionStorage.setItem('Cp_MessageDelKey', DKey)
+            setTimeout(() => {
+                var MKey1 = parseInt(sessionStorage.getItem('Cp_MessageKey'))
+                var DKey1 = parseInt(sessionStorage.getItem('Cp_MessageDelKey'))
+                if (MKey1 == DKey1) {
+                    sessionStorage.removeItem('Cp_MessageKey')
+                    sessionStorage.removeItem('Cp_MessageDelKey')
+                    $('.Cp_Message').remove()
+                    clearInterval()
+                }
+            }, 0);
         }
+
+        window.onunload = function () {
+            sessionStorage.removeItem('Cp_MessageKey')
+            sessionStorage.removeItem('Cp_MessageDelKey')
+            $('.Cp_Message').remove()
+            clearInterval()
+        }
+
     }
     Long.Switch = function (data) {
         var HtmlID = data.HtmlID

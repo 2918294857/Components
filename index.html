@@ -8,7 +8,7 @@
     <title>Document</title>
     <style>
         body {
- 
+
             position: absolute;
             top: 0;
             bottom: 0;
@@ -20,38 +20,54 @@
 
         .Carousel {
             width: 80%;
-            height:80%;
+            height: 80%;
             padding-left: 30px;
         }
-
-
-        
     </style>
 </head>
 <script src="./jquery-3.6.1.min.js"></script>
 <script src="./CpScript.js"></script>
 <link rel="stylesheet" href="./Css/Carousel.css">
 <link rel="stylesheet" href="./Css/DropDown.css">
+
 <body>
     <div id="Cp_Carousel" class="Carousel"></div>
-   <script>
-     var data = {
+    <script>
+        var data = {
             text: '恭喜你，这是一条成功的消息',//提示内容
             Color: '#67A32c',//字体颜色
             Background: '#f0f9EB',//背景颜色
-            Icon:'./Icon/success.png'
+            Icon: './Icon/success.png'
         }
         Long.Message(data)
-
-         var data1 = {
-            text: '警告，这是一条警告消息',//提示内容
-            Color: '#E6A23c',//字体颜色
-            Background: '#FDF6EC',//背景颜色
-            Icon:'./Icon/warning.png'
-        } 
-        Long.Message(data1)
-Long.DropDown(data)
-   </script>
+        setTimeout(() => {
+            var data1 = {
+                text: '警告，这是一条警告消息',//提示内容
+                Color: '#E6A23c',//字体颜色
+                Background: '#FDF6EC',//背景颜色
+                Icon: './Icon/warning.png'
+            }
+            Long.Message(data1)
+        }, 2800)
+        setTimeout(() => {
+            var data1 = {
+                text: '警告，这是一条警告消息1',//提示内容
+                Color: '#E6A23c',//字体颜色
+                Background: '#FDF6EC',//背景颜色
+                Icon: './Icon/warning.png'
+            }
+            Long.Message(data1)
+        },2900)
+        // setTimeout(() => {
+        //     var data1 = {
+        //         text: '警告，这是一条警告消息1',//提示内容
+        //         Color: '#E6A23c',//字体颜色
+        //         Background: '#FDF6EC',//背景颜色
+        //         Icon: './Icon/warning.png'
+        //     }
+        //     Long.Message(data1)
+        // },2700)
+    </script>
 </body>
 
 </html>
