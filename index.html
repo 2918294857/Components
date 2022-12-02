@@ -32,41 +32,14 @@
 
 <body>
     <div id="Cp_Carousel" class="Carousel"></div>
+
     <script>
         var data = {
-            text: '恭喜你，这是一条成功的消息',//提示内容
-            Color: '#67A32c',//字体颜色
-            Background: '#f0f9EB',//背景颜色
-            Icon: './Icon/success.png'
+            HtmlID: 'Cp_Carousel',//添加位置
+            line_height: 24  //行间距
         }
-        Long.Message(data)
-        setTimeout(() => {
-            var data1 = {
-                text: '警告，这是一条警告消息',//提示内容
-                Color: '#E6A23c',//字体颜色
-                Background: '#FDF6EC',//背景颜色
-                Icon: './Icon/warning.png'
-            }
-            Long.Message(data1)
-        }, 2800)
-        setTimeout(() => {
-            var data1 = {
-                text: '警告，这是一条警告消息1',//提示内容
-                Color: '#E6A23c',//字体颜色
-                Background: '#FDF6EC',//背景颜色
-                Icon: './Icon/warning.png'
-            }
-            Long.Message(data1)
-        },2900)
-        // setTimeout(() => {
-        //     var data1 = {
-        //         text: '警告，这是一条警告消息1',//提示内容
-        //         Color: '#E6A23c',//字体颜色
-        //         Background: '#FDF6EC',//背景颜色
-        //         Icon: './Icon/warning.png'
-        //     }
-        //     Long.Message(data1)
-        // },2700)
+        Long.EditBox(data)
+
     </script>
 </body>
 
@@ -75,3 +48,4 @@
 <link rel="stylesheet" href="./Css/DialogBox.css">
 <link rel="stylesheet" href="./Css/DropDown.css">
 <link rel="stylesheet" href="./Css/Message.css">
+<link rel="stylesheet" href="./Css/EditBox.css">

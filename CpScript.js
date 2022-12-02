@@ -18,8 +18,7 @@
         }
         function Init_Css() {
             $(`#${id}`).css({
-                "display": "flex",
-                "border": "1px solid skyblue"
+                "display": "flex"
             })
             $('.Cp_EditBox_content').css('line-height', line_height + 'px')
             $(`#${id}_content`).css('width', $(`#${id}`).width() - 35 + 'px')
