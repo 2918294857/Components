@@ -23,6 +23,7 @@
             })
             $('.Cp_EditBox_content').css('line-height', line_height + 'px')
             $(`#${id}_content`).css('width', $(`#${id}`).width() - 35 + 'px')
+            $('.Cp_EditBox_seq li').css('line-height', line_height + 'px')
         }
 
         function scroll() {
