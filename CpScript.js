@@ -10,10 +10,10 @@
         Enter()
         Backspace()
         function Html() {
-            var html = `<div id="${id}_seq" class="Cp_EditBox_seq">
+            var html = `<div class="Cp_EditBox"><div id="${id}_seq" class="Cp_EditBox_seq">
                            <li>1</li>
                         </div>
-                        <textarea id="${id}_content" class="Cp_EditBox_content"></textarea>`
+                        <textarea id="${id}_content" class="Cp_EditBox_content"></textarea></div>`
             $(`#${id}`).html(html)
         }
         function Init_Css() {
@@ -114,7 +114,7 @@
         var TheadBtnName = typeof (TableData.TheadBtnName) == "undefined" ? '' : TableData.TheadBtnName
         var IsEditBtn = TableData.IsEditBtn
         var IsDelBtn = TableData.IsDelBtn
-        var TbodyDataLength = typeof (TableData.TbodyDataLength) == "undefined" ? TbodyData.length : TableData.TbodyDataLength
+        var TbodyDataLength = typeof (TableData.TbodyDataLength) == "undefined" || TableData.TbodyDataLength == '' ? TbodyData.length : TableData.TbodyDataLength
         var TbodyPageCount = !isNaN(TableData.TbodyPageCount) ? TableData.TbodyPageCount : "All"
         var PagesCount = 1  //当前页数
         var backups = ''//备份
@@ -475,11 +475,13 @@
             $(`#${MID}`).css({ 'color': MColor, 'background': MBackground })
             Tiptitle = `<img src="${MIcon}" class="Cp_Message_ICON"  alt="">${MText}`
             $(`#${MID}`).html(Tiptitle)
+            var w = (parseInt($(window).width()) - parseInt($(`#${MID}`).width())) / 2 - 20
+            $('.Cp_Message').css('margin-left', w + 'px')
         }
 
         function Mgo() {
             var Tgo = setInterval(function () {
-                 Distance = MKey == 1 ? (MKey * 20) : parseInt($(`#Cp_Mkey${MKey - 1}`).css('top')) + 50
+                Distance = MKey == 1 ? (MKey * 20) : parseInt($(`#Cp_Mkey${MKey - 1}`).css('top')) + 50
                 var Htop = $(`#${MID}`).css('top') == 'auto' ? -40 : parseInt($(`#${MID}`).css('top'))
                 if (Htop < Distance) {
                     $(`#${MID}`).css('top', Htop + 1 + 'px')
@@ -492,20 +494,20 @@
         }
 
         function Mforward() {
-                Tforward = setInterval(function () {
-                    if (MKey != 1 && parseInt($(`#Cp_Mkey${MKey - 1}`).css('top')) + 50 == parseInt($(`#${MID}`).css('top')) - 50) {
-                        var top = parseInt($(`#${MID}`).css('top')) - 45
-                        var Titem = setInterval(() => {
-                            var Htop = parseInt($(`#${MID}`).css('top'))
-                            if (Htop > top) {
-                                $(`#${MID}`).css('top', Htop - 1 + 'px')
-                            }
-                            else {
-                                clearInterval(Titem)
-                            }
-                        })
-                    }
-                }, 0)
+            Tforward = setInterval(function () {
+                if (MKey != 1 && parseInt($(`#Cp_Mkey${MKey - 1}`).css('top')) + 50 == parseInt($(`#${MID}`).css('top')) - 50) {
+                    var top = parseInt($(`#${MID}`).css('top')) - 45
+                    var Titem = setInterval(() => {
+                        var Htop = parseInt($(`#${MID}`).css('top'))
+                        if (Htop > top) {
+                            $(`#${MID}`).css('top', Htop - 1 + 'px')
+                        }
+                        else {
+                            clearInterval(Titem)
+                        }
+                    })
+                }
+            }, 0)
         }
 
 
@@ -570,15 +572,16 @@
         }
         function SClick() {
             var i = 0;
+            var w = parseInt($(`#Cp_Switch_${HtmlID}`).width()) - parseInt($(`#Cp_BtnSwitch_${HtmlID}`).width())
             $(`#Cp_BtnSwitch_${HtmlID}`).on('click', function () {
                 if (i == 0) {
                     $(`#Cp_Switch_${HtmlID}`).css('background', `${OnColor}`)
-                    $(`#Cp_Switch_${HtmlID}`).css('justify-content', 'right')
+                    $(`#Cp_BtnSwitch_${HtmlID}`).css('margin-left', w + 'px')
                     i = 1
                 }
                 else {
                     $(`#Cp_Switch_${HtmlID}`).css('background', `${OffColor}`)
-                    $(`#Cp_Switch_${HtmlID}`).css('justify-content', 'left')
+                    $(`#Cp_BtnSwitch_${HtmlID}`).css('margin-left', '0px')
                     i = 0
                 }
             })

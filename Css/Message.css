@@ -1,20 +1,15 @@
 .Cp_Message {
-    top: -40px;
-    width: 25%;
+    top: -5vh;
+    width: auto;
     height: 40px;
     display: flex;
     padding: 20px;
     position: absolute;
     border-radius: 6px;
+    white-space: nowrap;
     align-items: center;
     justify-content: left;
     box-sizing: border-box;
-    margin: 0px 37.5% 20px 37.5%;
-}
-
-.Cp_Message_animation {
-    animation-duration: 4s;
-    animation-name: Cp_Message_example;
 }
 
 .Cp_Message_ICON {
@@ -23,24 +18,3 @@
     margin-right: 10px;
 }
 
-@keyframes Cp_Message_example {
-    0% {
-        top: -3vh;
-    }
-
-    25% {
-        top: 3vh;
-    }
-
-    50% {
-        top: 3vh;
-    }
-
-    75% {
-        top: 3vh;
-    }
-
-    100% {
-        top: -5vh;
-    }
-}

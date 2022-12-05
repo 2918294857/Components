@@ -1,16 +1,21 @@
+.Cp_EditBox{
+    display: flex;
+}
 .Cp_EditBox_seq {
     margin: 0;
     padding: 0;
     width: 30px;
     height: 100%;
     display: flex;
-    color: white;
+    color: rgb(184, 197, 208);
     overflow: auto;
     min-width: 30px;
+    border-radius: 5px;
     overflow-y: hidden;
     align-items: center;
+    border-radius: 0;
     flex-direction: column;
-    background-color: #111111;
+    border-right: 2px solid rgb(184, 197, 208);
 }
 
 .Cp_EditBox_seq::-webkit-scrollbar {
@@ -34,10 +39,11 @@
     overflow-x: hidden;
     font-family: "雅黑";
     white-space: nowrap;
-    border: 1px solid black;
     border-radius: 5px;
     box-sizing: border-box;
     border-left: none !important;
+    border-bottom: none !important;
     border-top-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
 }
