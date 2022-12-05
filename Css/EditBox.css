@@ -1,5 +1,6 @@
 .Cp_EditBox{
     display: flex;
+    height: 100%;
 }
 .Cp_EditBox_seq {
     margin: 0;
