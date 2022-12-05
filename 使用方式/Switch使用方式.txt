@@ -10,3 +10,5 @@
     }
 调用：
    Long.Switch(data)
+//function Assembly_effect_Mask_item_Switch_BtnOn() { }//打开事件 名称由  HtmlID + _Switch_BtnOn 组成;
+//function Assembly_effect_Mask_item_Switch_BtnOff() { } //关闭事件   名称由  HtmlID + _Switch_BtnOff 组成;

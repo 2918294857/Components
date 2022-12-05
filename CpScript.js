@@ -578,11 +578,15 @@
                     $(`#Cp_Switch_${HtmlID}`).css('background', `${OnColor}`)
                     $(`#Cp_BtnSwitch_${HtmlID}`).css('margin-left', w + 'px')
                     i = 1
+                    let funName = eval(`${HtmlID}_Switch_BtnOn`);
+                    funName.call(this)
                 }
                 else {
                     $(`#Cp_Switch_${HtmlID}`).css('background', `${OffColor}`)
                     $(`#Cp_BtnSwitch_${HtmlID}`).css('margin-left', '0px')
                     i = 0
+                    let funName = eval(`${HtmlID}_Switch_BtnOff`);
+                    funName.call(this)
                 }
             })
         }
