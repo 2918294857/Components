@@ -387,15 +387,27 @@
         DHtml()
         Dclick()
         Iclick()
+        mouseout()
         function DHtml() {
-            var html = `<input id="Cp_DropDown_${HtmlID}" placeholder="请选择" readonly="true" class="Cp_DropDown" type="text">
-                        <div id="Cp_DropDownItem_${HtmlID}" class="Cp_DropDownItem">${allcheckbox}</div>`
+            var html = `<div id="Cp_DropDown_Select_${HtmlID}" class="Cp_DropDown_Select_${HtmlID}"><input id="Cp_DropDown_${HtmlID}" placeholder="请选择" readonly="true" class="Cp_DropDown" type="text">
+                        <div id="Cp_DropDownItem_${HtmlID}" class="Cp_DropDownItem">${allcheckbox}</div></div>`
             $(`#${HtmlID}`).html(html)
+            var w=$(`#Cp_DropDown_Select_${HtmlID}`).width()
+            $(`#Cp_DropDownItem_${HtmlID}`).css('width',w+'px')
         }
         function DHtml_checkbox() {
             for (var i = 0; i < Select.length; i++) {
                 allcheckbox += ` <div> <input name="${Checkbox_Name}" type="checkbox"> ${Select[i]} </div>`
             }
+        }
+        function mouseout()
+        {
+            $(`#Cp_DropDownItem_${HtmlID}`).mouseover(function(){
+                $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'block')
+            })
+            $(`#Cp_DropDownItem_${HtmlID}`).mouseout(function(){
+                $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'none')
+            })
         }
         function Iclick() {
             $(`#Cp_DropDown_${HtmlID}`).on('click', function () {
