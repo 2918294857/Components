@@ -386,7 +386,6 @@
         DHtml_checkbox()
         DHtml()
         Dclick()
-        Iclick()
         mouseout()
         function DHtml() {
             var html = `<div id="Cp_DropDown_Select_${HtmlID}" class="Cp_DropDown_Select_${HtmlID}"><input id="Cp_DropDown_${HtmlID}" placeholder="请选择" readonly="true" class="Cp_DropDown" type="text">
@@ -402,6 +401,12 @@
         }
         function mouseout()
         {
+            $(`#Cp_DropDown_${HtmlID}`).mouseout(function(){
+                $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'none')
+            })
+            $(`#Cp_DropDown_${HtmlID}`).mouseover(function(){
+                $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'block')
+            })
             $(`#Cp_DropDownItem_${HtmlID}`).mouseover(function(){
                 $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'block')
             })
@@ -409,16 +414,7 @@
                 $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'none')
             })
         }
-        function Iclick() {
-            $(`#Cp_DropDown_${HtmlID}`).on('click', function () {
-                if ($(`#Cp_DropDownItem_${HtmlID}`).css('display') == 'block') {
-                    $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'none')
-                }
-                else {
-                    $(`#Cp_DropDownItem_${HtmlID}`).css('display', 'block')
-                }
-            })
-        }
+    
         function Dclick() {
             if (Type == 'Checkbox1') {
                 $(`#Cp_DropDownItem_${HtmlID} div input`).css('pointer-events', 'none')
